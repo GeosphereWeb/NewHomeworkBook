@@ -1,8 +1,8 @@
 # NewHomeworkBook
 [![API](https://img.shields.io/badge/API-29%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=29)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/GeosphereWeb/Homeworkbook)
-![GitHub last commit](https://img.shields.io/github/last-commit/GeosphereWeb/Homeworkbook)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GeosphereWeb/Homeworkbook)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/GeosphereWeb/NewHomeworkbook)
+![GitHub last commit](https://img.shields.io/github/last-commit/GeosphereWeb/NewHomeworkbook)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GeosphereWeb/NewHomeworkbook)
 
 Die APP "Homeworkbook" ist der "beste Freund" des Schülers. Es hilft dir für die tägliche Organisierung des Schulaltags.
 ## Funktionsumfang
