@@ -4,7 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/GeosphereWeb/NewHomeworkbook)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GeosphereWeb/NewHomeworkbook)
 
-Die APP "Homeworkbook" ist der "beste Freund" des Schülers. Es hilft dir für die tägliche Organisierung des Schulaltags.
+Die APP "NewHomeworkbook" ist der "beste Freund" des Schülers. Es hilft dir für die tägliche Organisierung des Schulaltags.
 ## Funktionsumfang
 Folgende Funktionen soll die APP haben
 - Verwaltung von 
