@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.newhomeworkbook.WelcomeFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_welcome"
+        >
+        <action
+            android:id="@+id/action_mainFragment_to_schoolsubjectFragment"
+            app:destination="@id/schoolsubjectFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_schedulePlanFragment"
+            app:destination="@id/schedulePlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/schoolsubjectFragment"
+        android:name="com.example.newhomeworkbook.SchoolsubjectFragment"
+        android:label="fragment_schoolsubject"
+        tools:layout="@layout/fragment_schoolsubject" />
+    <fragment
+        android:id="@+id/schedulePlanFragment"
+        android:name="com.example.newhomeworkbook.SchedulePlanFragment"
+        android:label="fragment_schedule_plan"
+        tools:layout="@layout/fragment_schedule_plan" >
+        <action
+            android:id="@+id/action_schedulePlanFragment_to_schoolsubjectFragment"
+            app:destination="@id/schoolsubjectFragment" />
+    </fragment>
+</navigation>

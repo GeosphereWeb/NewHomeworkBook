@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/outline_maps_home_work_20"
+        android:title="M Home"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/pokal"
+        android:icon="@drawable/outline_emoji_events_20"
+        android:title="M Pokal"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/auszeichnung"
+        android:icon="@drawable/outline_military_tech_20"
+        android:title="M Auszeichnung"
+        app:showAsAction="always|withText" />
+</menu>
