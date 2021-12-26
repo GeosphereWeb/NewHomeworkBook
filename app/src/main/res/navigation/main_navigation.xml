@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.newhomeworkbook.WelcomeFragment"
-        android:label="fragment_main"
+        android:label="main"
         tools:layout="@layout/fragment_welcome"
         >
         <action
@@ -21,12 +21,12 @@
     <fragment
         android:id="@+id/schoolsubjectFragment"
         android:name="com.example.newhomeworkbook.SchoolsubjectFragment"
-        android:label="fragment_schoolsubject"
+        android:label="schoolsubject"
         tools:layout="@layout/fragment_schoolsubject" />
     <fragment
         android:id="@+id/schedulePlanFragment"
         android:name="com.example.newhomeworkbook.SchedulePlanFragment"
-        android:label="fragment_schedule_plan"
+        android:label="schedule_plan"
         tools:layout="@layout/fragment_schedule_plan" >
         <action
             android:id="@+id/action_schedulePlanFragment_to_schoolsubjectFragment"

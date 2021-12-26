@@ -12,9 +12,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="{argName}"
-        app:navigationIcon="@drawable/ic_outline_menu_24"
-        />
+        app:navigationIcon="@drawable/ic_outline_menu_24" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
