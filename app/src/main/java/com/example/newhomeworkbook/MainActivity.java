@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         NavHostFragment navHostFragment = (NavHostFragment) supportFragmentManager.findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(binding.bottomNav, navController);
+        NavigationUI.setupWithNavController(binding.bottomNavId, navController);
 
+        // Action bar
+        setSupportActionBar(binding.toolbarId);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
 
 
@@ -62,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        // Action bar
-        setSupportActionBar(binding.toolbar);
+
 
     }
 }
