@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#98BAD5" />
+    <size
+        android:width="50dp"
+        android:height="50dp" />
+</shape>
+
+    <!--<shape-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:shape="rectangle">-->
+
+    <!--<corners android:radius="10dp" />-->
+
+    <!--&lt;!&ndash; This is the border color &ndash;&gt;-->
+    <!--<stroke android:width="2dp" android:color="#ccc" />-->
+
+    <!--&lt;!&ndash;- This is the background color &ndash;&gt;-->
+    <!--<solid android:color="#ccc" />-->
+
+    <!--</shape>-->

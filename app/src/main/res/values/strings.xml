@@ -2,4 +2,19 @@
     <string name="app_name">NewHomeworkBook</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MON">MON</string>
+    <string name="TUE">TUE</string>
+    <string name="WED">WED</string>
+    <string name="THU">THU</string>
+    <string name="FRI">FRI</string>
+    <string name="SAT">SAT</string>
+    <string name="SUN">SUN</string>
+
+    <string name="MONDAY">Monday</string>
+    <string name="TUESDAY">Tuesday</string>
+    <string name="WEDNESDAY">Wednesday</string>
+    <string name="THURSDAY">Thursday</string>
+    <string name="FRIDAY">Friday</string>
+    <string name="SATURDAY">Saturday</string>
+    <string name="SUNDAY">Sunday</string>
 </resources>
