@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.newhomeworkbook.R;
 
-public enum DayOfTheWeek {
+public enum DayOfTheWeek implements KalenderDayModel{
     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
 
     private static final DayOfTheWeek[] values = DayOfTheWeek.values();//cache for optimization
@@ -18,7 +18,7 @@ public enum DayOfTheWeek {
         }
     }
 
-    public int getNameReferenceAsShort() {
+    public int getNameReferenceAsShortName() {
         switch (this) {
             case MONDAY:
                 return R.string.MON;
@@ -39,7 +39,7 @@ public enum DayOfTheWeek {
         }
     }
 
-    public int getNameReferenceAsLong() {
+    public int getNameReferenceAsLongName() {
         switch (this) {
             case MONDAY:
                 return R.string.MONDAY;

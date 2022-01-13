@@ -2,7 +2,6 @@ package com.example.newhomeworkbook.Kalender;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newhomeworkbook.NewHomeworkBook;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 
@@ -36,19 +34,17 @@ public class KalenderRecyclerView extends RecyclerView {
         init();
     }
 
+    /**
+     *
+     */
     protected void init() {
-        Log.i("WERNER", "" + aktDatum);
-
         // Layoutmanager
         layoutManager = new GridLayoutManager(this.getContext(), 7);
         this.setLayoutManager(layoutManager);
 
         this.aktMonat = YearMonth.now();
 
-        this.setAdapter(new KalenderViewAdapter());
-
-
-
+        this.setAdapter(new KalenderViewAdapter(aktMonat));
     }
 
     /* Delegated Methods */

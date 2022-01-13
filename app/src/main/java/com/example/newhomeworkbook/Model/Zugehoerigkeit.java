@@ -1,5 +1,5 @@
 package com.example.newhomeworkbook.Model;
 
 public enum Zugehoerigkeit {
-    DIESEN_MONAT, AKTUELLN_MONAT, NAECHSTER_MONAT
+    VORHERIGER_MONAT, AKTUELLN_MONAT, NAECHSTER_MONAT
 }

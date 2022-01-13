@@ -1,14 +1,13 @@
 package com.example.newhomeworkbook;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
 
@@ -67,8 +66,6 @@ public class WelcomeFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_main, container, false);
         binding = FragmentWelcomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
-
 
         TextView test = binding.welcomeId;
         test.setText("werner sagt Welcome");
