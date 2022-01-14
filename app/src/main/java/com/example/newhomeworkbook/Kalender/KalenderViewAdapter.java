@@ -66,10 +66,10 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // diese Methode erzeugt die View
         if (viewType == DAY_OF_THE_WEEK) {
-            ConstraintLayout inflate = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_kalender_weekname, parent, false);
+            ConstraintLayout inflate = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.view_kalender_weekname_item, parent, false);
             return new KalenderItemWeeknameViewHolder(inflate);
         } else {
-            ConstraintLayout inflate = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_kalender_day, parent, false);
+            ConstraintLayout inflate = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.view_kalender_day_item, parent, false);
             return new KalenderItemDayViewHolder(inflate);
         }
     }
@@ -129,6 +129,8 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
         return monatsModell.size();
     }
 
+
+
     /*
      *******************************************************************************
      */
@@ -140,11 +142,13 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
     public static class KalenderItemDayViewHolder extends RecyclerView.ViewHolder {
         TextView tagesDatum;
         LinearLayout addons;
+        View clickArea;
 
         public KalenderItemDayViewHolder(@NonNull View itemView) {
             super(itemView);
             tagesDatum = itemView.findViewById(R.id.item_kalender_dayitem);
             addons = itemView.findViewById((R.id.item_kalender_addons));
+            clickArea = itemView.findViewById(R.id.kalenderItemDay_clickArea);
         }
 
         public TextView getTagesDatum() {
