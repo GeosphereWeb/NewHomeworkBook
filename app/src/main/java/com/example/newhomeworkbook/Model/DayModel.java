@@ -22,4 +22,12 @@ public class DayModel implements KalenderDayModel{
     public void setZugehoerigkeit(Zugehoerigkeit zugehoerigkeit) {
         this.zugehoerigkeit = zugehoerigkeit;
     }
+
+    @Override
+    public String toString() {
+        return "DayModel{" +
+                "date=" + date +
+                ", zugehoerigkeit=" + zugehoerigkeit +
+                '}';
+    }
 }

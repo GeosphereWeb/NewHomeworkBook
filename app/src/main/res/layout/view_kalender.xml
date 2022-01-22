@@ -19,14 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/kalenderView_button_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button Left"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kalenderView_TextJahr" />
-
     <TextView
         android:id="@+id/kalenderView_monatsName"
         android:layout_width="wrap_content"
@@ -36,28 +28,42 @@
         android:foregroundGravity="center|fill"
         android:gravity="center|fill"
         android:text="MONATSNAME"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/kalenderView_button_right"
-        app:layout_constraintEnd_toStartOf="@+id/kalenderView_button_right"
-        app:layout_constraintStart_toEndOf="@+id/kalenderView_button_left"
-        app:layout_constraintTop_toTopOf="@+id/kalenderView_button_left" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/kalenderView_min_month"
+        app:layout_constraintEnd_toStartOf="@+id/kalenderView_add_month"
+        app:layout_constraintStart_toEndOf="@+id/kalenderView_min_month"
+        app:layout_constraintTop_toTopOf="@+id/kalenderView_min_month" />
 
-    <Button
-        android:id="@+id/kalenderView_button_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Right Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/kalenderView_button_left" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.newhomeworkbook.Kalender.KalenderRecyclerView
         android:id="@+id/kalender_view_recyclerview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:foregroundGravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kalenderView_button_left"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/kalenderView_min_month" />
+
+    <ImageButton
+        android:id="@+id/kalenderView_min_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kalenderView_TextJahr"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+
+    <ImageButton
+        android:id="@+id/kalenderView_add_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kalenderView_TextJahr"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,6 @@ import com.example.newhomeworkbook.Model.KalenderDayModel;
 import com.example.newhomeworkbook.Model.Zugehoerigkeit;
 import com.example.newhomeworkbook.R;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -50,7 +49,6 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
     public void setAktMonth(YearMonth newMonth) {
         this.aktMonth = newMonth;
         monatsModell = MonthModel.createModel(newMonth);
-        this.notifyDataSetChanged();
     }
 
 
@@ -97,7 +95,7 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
             if (tmpDayModel.getZugehoerigkeit() != Zugehoerigkeit.AKTUELLN_MONAT) {
 //                tagesDatumTextView.setVisibility(View.INVISIBLE);
                 addonsLinearLayout.setVisibility(View.GONE);
-                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.LTGRAY, BlendMode.OVERLAY));
+                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.LTGRAY, BlendMode.COLOR));
 
 //                tagesDatumTextView.getForeground().setColorFilter(new BlendModeColorFilter(Color.GREEN, BlendMode.OVERLAY));
 
@@ -115,9 +113,10 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
             // Das Aktuelle Datum wird hervorgehoben
             if (tmpDayModel.getDate().isEqual(aktDatum)) {
                 tagesDatumTextView.setText(String.valueOf(dayOfMonth));
-                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.DKGRAY, BlendMode.OVERLAY));
+                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.DKGRAY, BlendMode.COLOR));
             } else {
                 tagesDatumTextView.setText(String.valueOf(dayOfMonth));
+                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.BLUE, BlendMode.COLOR));
             }
 
         }
@@ -228,11 +227,12 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
                 monthModel.add(DayOfTheWeek.getDayOfTheWeek(i));
             }
 
-            DayOfWeek dayOfWeek = month.atDay(1).getDayOfWeek();
+            LocalDate firstDayInMonth = month.atDay(1);
+            int firstDayOfWeek = firstDayInMonth.getDayOfWeek().getValue();
 
             // Tage vor dem aktuellen Monat werden eingetragen
-            for (int i = 1; i < dayOfWeek.getValue(); i++) {
-                monthModel.add(new DayModel(month.atDay(1).minusDays(7 - i), Zugehoerigkeit.VORHERIGER_MONAT));
+            for (int i = 1; i < firstDayOfWeek; i++) {
+                monthModel.add(new DayModel(firstDayInMonth.minusDays(firstDayOfWeek-i), Zugehoerigkeit.VORHERIGER_MONAT));
             }
 
             // Tage im aktuellen Monat werden eingetragen
@@ -240,8 +240,11 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
                 monthModel.add(new DayModel(month.atDay(i), Zugehoerigkeit.AKTUELLN_MONAT));
             }
 
-            for (int i = 1; i <= dayOfWeek.getValue(); i++) {
-                monthModel.add(new DayModel(month.atDay(month.lengthOfMonth()).plusDays(i), Zugehoerigkeit.NAECHSTER_MONAT));
+            LocalDate lastDayInMonth = month.atEndOfMonth();
+            int lastDayOfWeek = lastDayInMonth.getDayOfWeek().getValue();
+
+            for (int i = 1; i <= 7 - lastDayOfWeek; i++) {
+                monthModel.add(new DayModel(lastDayInMonth.plusDays(i), Zugehoerigkeit.NAECHSTER_MONAT));
             }
 
             return monthModel;
