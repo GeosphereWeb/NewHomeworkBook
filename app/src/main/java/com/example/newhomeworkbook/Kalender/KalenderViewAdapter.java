@@ -1,8 +1,6 @@
 package com.example.newhomeworkbook.Kalender;
 
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,11 +75,17 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
         // Diese Methode bindet die Infos auf die ItemView
         KalenderDayModel kalenderDayModel = monatsModell.get(position);
         if (kalenderDayModel instanceof DayOfTheWeek) {
+            /////////////////////////////////////
+            // DayOfTheWeek                    //
+            /////////////////////////////////////
             DayOfTheWeek tmpDayOfTheWeek = (DayOfTheWeek) monatsModell.get(position);
 
             ((KalenderItemWeeknameViewHolder) holder).setDayOfWeekValue(tmpDayOfTheWeek.ordinal());
 
         } else if (kalenderDayModel instanceof DayModel) {
+            ///////////////////////////////////////
+            // DayModel                         //
+            /////////////////////////////////////
             DayModel tmpDayModel = (DayModel) monatsModell.get(position);
             int dayOfMonth = tmpDayModel.getDate().getDayOfMonth();
 
@@ -89,34 +93,57 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
             TextView tagesDatumTextView = kalenderItemDayViewHolder.getTagesDatum();
             LinearLayout addonsLinearLayout = kalenderItemDayViewHolder.getAddons();
 
+            // Datum eintragen
+            tagesDatumTextView.setText(String.valueOf(dayOfMonth));
+
+
+            // Farbliche differenzierung
             /*
-              Was nicht zum aktuellen Monat gehört wird anders angezeigt.
+              Was zum aktuellen Monat gehört wird anders angezeigt.
              */
-            if (tmpDayModel.getZugehoerigkeit() != Zugehoerigkeit.AKTUELLN_MONAT) {
-//                tagesDatumTextView.setVisibility(View.INVISIBLE);
+            if (tmpDayModel.getZugehoerigkeit() == Zugehoerigkeit.AKTUELLN_MONAT) {
+                addonsLinearLayout.setVisibility(View.VISIBLE);
+//                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.YELLOW, BlendMode.OVERLAY));
+                GradientDrawable background = (GradientDrawable) tagesDatumTextView.getBackground();
+                background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.kalender_light_day_in_month));
+
+                //                tagesDatumTextView.getForeground().setColorFilter(new BlendModeColorFilter(Color.GREEN, BlendMode.OVERLAY));
+
+                //                Or if you have defined color code in resource's color.xml file than
+                //
+                //                (From API >= 23)
+                //                mTextView.setTextColor(ContextCompat.getColor(context, R.color.<name_of_color>));
+                //
+                //                (For API < 23)
+                //                mTextView.setTextColor(getResources().getColor(R.color.<name_of_color>));
+                //                tagesDatumTextView.setTextColor(Color.GRAY);
+            } else {
+                //                tagesDatumTextView.setVisibility(View.INVISIBLE);
                 addonsLinearLayout.setVisibility(View.GONE);
-                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.LTGRAY, BlendMode.COLOR));
+                GradientDrawable background = (GradientDrawable) tagesDatumTextView.getBackground();
+                background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.kalender_light_day_after_month));
+//                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.LTGRAY, BlendMode.COLOR));
 
-//                tagesDatumTextView.getForeground().setColorFilter(new BlendModeColorFilter(Color.GREEN, BlendMode.OVERLAY));
+                //                tagesDatumTextView.getForeground().setColorFilter(new BlendModeColorFilter(Color.GREEN, BlendMode.OVERLAY));
 
-//                Or if you have defined color code in resource's color.xml file than
-//
-//                (From API >= 23)
-//                mTextView.setTextColor(ContextCompat.getColor(context, R.color.<name_of_color>));
-//
-//                (For API < 23)
-//                mTextView.setTextColor(getResources().getColor(R.color.<name_of_color>));
-//                tagesDatumTextView.setTextColor(Color.GRAY);
-                tagesDatumTextView.setTextColor(ContextCompat.getColor(tagesDatumTextView.getContext(), R.color.light_blue_400));
+                //                Or if you have defined color code in resource's color.xml file than
+                //
+                //                (From API >= 23)
+                //                mTextView.setTextColor(ContextCompat.getColor(context, R.color.<name_of_color>));
+                //
+                //                (For API < 23)
+                //                mTextView.setTextColor(getResources().getColor(R.color.<name_of_color>));
+                //                tagesDatumTextView.setTextColor(Color.GRAY);
+//                tagesDatumTextView.setTextColor(ContextCompat.getColor(tagesDatumTextView.getContext(), R.color.light_blue_400));
             }
+
+
 
             // Das Aktuelle Datum wird hervorgehoben
             if (tmpDayModel.getDate().isEqual(aktDatum)) {
-                tagesDatumTextView.setText(String.valueOf(dayOfMonth));
-                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.DKGRAY, BlendMode.COLOR));
-            } else {
-                tagesDatumTextView.setText(String.valueOf(dayOfMonth));
-                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.BLUE, BlendMode.COLOR));
+//                tagesDatumTextView.getBackground().setColorFilter(new BlendModeColorFilter(Color.DKGRAY, BlendMode.COLOR));
+                GradientDrawable background = (GradientDrawable) tagesDatumTextView.getBackground();
+                background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.kalender_light_day_actual));
             }
 
         }
@@ -232,7 +259,7 @@ public class KalenderViewAdapter extends RecyclerView.Adapter {
 
             // Tage vor dem aktuellen Monat werden eingetragen
             for (int i = 1; i < firstDayOfWeek; i++) {
-                monthModel.add(new DayModel(firstDayInMonth.minusDays(firstDayOfWeek-i), Zugehoerigkeit.VORHERIGER_MONAT));
+                monthModel.add(new DayModel(firstDayInMonth.minusDays(firstDayOfWeek - i), Zugehoerigkeit.VORHERIGER_MONAT));
             }
 
             // Tage im aktuellen Monat werden eingetragen

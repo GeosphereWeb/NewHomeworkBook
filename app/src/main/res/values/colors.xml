@@ -59,4 +59,9 @@
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
 
+    <color name="kalender_light_day_actual">#E1E69D</color>
+    <color name="kalender_light_day_in_month">#3BCCBD</color>
+    <color name="kalender_light_day_pre_month">#60778180</color>
+    <color name="kalender_light_day_after_month">#60778180</color>
+
 </resources>
