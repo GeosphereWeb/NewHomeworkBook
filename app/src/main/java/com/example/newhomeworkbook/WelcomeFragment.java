@@ -1,16 +1,17 @@
 package com.example.newhomeworkbook;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import com.example.newhomeworkbook.calender.model.CalenderDayModelManager;
 import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +69,8 @@ public class WelcomeFragment extends Fragment {
         binding = FragmentWelcomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        // Setze hier die Kalenderwoche
+        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, 6));
 
 
         TextView test = binding.welcomeId;
