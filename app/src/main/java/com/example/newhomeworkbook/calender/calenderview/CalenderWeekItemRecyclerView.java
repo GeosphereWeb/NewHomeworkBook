@@ -1,6 +1,7 @@
-package com.example.newhomeworkbook.calender;
+package com.example.newhomeworkbook.calender.calenderview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newhomeworkbook.calender.model.CalenderDayModel;
-import com.example.newhomeworkbook.calender.model.CalenderDayModelManager;
+import com.example.newhomeworkbook.calender.model.DayInMonthStatus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class CalenderWeekItemRecyclerView extends RecyclerView {
     private void init(Context context) {
         this.setLayoutManager(new GridLayoutManager(context, 7));
         this.setAdapter(new CalenderWeekAdapter());
-        this.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, 1));
+//        this.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, Month.FEBRUARY, 1));
     }
 
     public void setCalenderWeekModel(ArrayList<CalenderDayModel> weekModel) {
@@ -68,23 +69,34 @@ public class CalenderWeekItemRecyclerView extends RecyclerView {
         @Override
         public void onBindViewHolder(@NonNull CalenderWeekViewHolder holder, int position) {
             CalenderDayModel calenderDayModel = newWeekModel.get(position);
-            holder.getCalendarDayItemView().setDatumText("" + calenderDayModel.getLocalDate().getDayOfMonth());
+            holder.getCalendarDayItemView().setThisDay(calenderDayModel);
+            holder.getCalendarDayItemView().setDatumString("" + calenderDayModel.getLocalDate().getDayOfMonth());
 
+            /*
+            Dif. für aktuellen Tag
+             */
             if (calenderDayModel.isLocalDateActualDate(todayDate)) {
-//                holder.setText("xx");
-//                holder.showLable(true);
-//                holder.showCircle(true);
-                holder.getCalendarDayItemView().showRing(true);
-
-                // FIXME: 01.02.2022 Backgroundänderung wirkt sich nur global aus und überschreibt den showRing() Methode
-//                holder.getCalendarDayItemView().setDayBackgroundColor(true);
-//                holder.getCalendarDayItemView().getDayBackground().setTint(Color.BLUE);
+                holder.getCalendarDayItemView().setRingVisibility(false);
+                holder.getCalendarDayItemView().showBgrHighlighted(true);
             } else {
-                holder.getCalendarDayItemView().showRing(false);
+                holder.getCalendarDayItemView().setRingVisibility(false);
+                holder.getCalendarDayItemView().showBgrHighlighted(false);
+            }
 
-                // FIXME: 01.02.2022 Backgroundänderung wirkt sich nur global aus und überschreibt den showRing() Methode
-//                holder.getCalendarDayItemView().setDayBackgroundColor(false);
-//                holder.getCalendarDayItemView().getDayBackground().setTint(Color.GREEN);
+            /*
+            Dif. für Anzege für die Tage innerhalb des anzuzeigenden Monats. Info ist aus der Klasse
+            @see CalenderDayModelManager erzeugt.
+             */
+            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.IN) {
+//                holder.getCalendarDayItemView().setDatumString("IN" + calenderDayModel.getLocalDate().getDayOfMonth());
+            }
+            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.PRE) {
+//                holder.getCalendarDayItemView().setDatumString("PRE" + calenderDayModel.getLocalDate().getDayOfMonth());
+                holder.getCalendarDayItemView().setDayTextViewColor(Color.LTGRAY);
+            }
+            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.POST) {
+//                holder.getCalendarDayItemView().setDatumString("OUT" + calenderDayModel.getLocalDate().getDayOfMonth());
+                holder.getCalendarDayItemView().setDayTextViewColor(Color.LTGRAY);
             }
         }
 

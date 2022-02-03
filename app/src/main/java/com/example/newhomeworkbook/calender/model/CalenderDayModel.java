@@ -8,11 +8,12 @@ import java.util.ArrayList;
  */
 public class CalenderDayModel {
     private LocalDate localDate;
-    ArrayList calenderEvents;
+    private ArrayList calenderEvents;
+    private DayInMonthStatus dayInMonthStatus;
 
     public CalenderDayModel(LocalDate localDate){
         this.localDate = localDate;
-        calenderEvents = new ArrayList<Kalenerereignisse>();
+        calenderEvents = new ArrayList<CalendarDayEvent>();
     }
 
     /**
@@ -29,11 +30,11 @@ public class CalenderDayModel {
      * Zeigt an, ob Kalenderereignisse vorliegen
      * @return
      */
-    public boolean hasCalenderevents(){
+    public boolean hasCalenderEvents(){
         return calenderEvents.isEmpty();
     }
 
-    public ArrayList<Kalenerereignisse> getCalenderEvents() {
+    public ArrayList<CalendarDayEvent> getCalenderEvents() {
         return calenderEvents;
     }
 
@@ -46,5 +47,13 @@ public class CalenderDayModel {
         return "CalenderDayModel{" +
                 "localDate=" + localDate +
                 '}';
+    }
+
+    public DayInMonthStatus getDayInMonthStatus() {
+        return dayInMonthStatus;
+    }
+
+    public void setDayInMonthStatus(DayInMonthStatus dayInMonthStatus) {
+        this.dayInMonthStatus = dayInMonthStatus;
     }
 }

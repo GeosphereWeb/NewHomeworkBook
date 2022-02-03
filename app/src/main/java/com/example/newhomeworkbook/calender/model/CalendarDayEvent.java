@@ -1,4 +1,4 @@
 package com.example.newhomeworkbook.calender.model;
 
-public class Kalenerereignisse {
+public class CalendarDayEvent {
 }

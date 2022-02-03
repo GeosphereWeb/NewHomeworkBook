@@ -12,6 +12,8 @@ import androidx.navigation.Navigation;
 import com.example.newhomeworkbook.calender.model.CalenderDayModelManager;
 import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
 
+import java.time.Month;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,7 +72,8 @@ public class WelcomeFragment extends Fragment {
         View view = binding.getRoot();
 
         // Setze hier die Kalenderwoche
-        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, 6));
+//        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, Month.FEBRUARY, 10));
+        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderMonthModel(2022, Month.FEBRUARY));
 
 
         TextView test = binding.welcomeId;
