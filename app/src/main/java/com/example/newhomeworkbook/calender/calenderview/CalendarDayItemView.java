@@ -128,6 +128,8 @@ public class CalendarDayItemView extends ConstraintLayout {
         if (highlight) {
             gradientDrawable.setColor(ContextCompat.getColor(getContext(),
                     R.color.calender_light_day_bubble_bgr_actualDay));
+            dayTextView.setTextColor(ContextCompat.getColor(getContext(),
+                    R.color.calender_light_day_bubble_text_inverseActualDay));
         }
     }
 

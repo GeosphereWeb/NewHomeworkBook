@@ -24,6 +24,16 @@
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_id" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_id" >
+
+    </com.example.newhomeworkbook.calender.calenderview.CalenderWeekItemRecyclerView>
+
+    <com.example.newhomeworkbook.calender.calenderview.CalenderWeekWithKwItemView
+        android:id="@+id/wochenansichtMitKW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caldenderWeekRecycler" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
