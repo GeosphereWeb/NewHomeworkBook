@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newhomeworkbook.calender.model.CalenderDayModel;
+import com.example.newhomeworkbook.calender.model.CalenderDay;
 import com.example.newhomeworkbook.calender.model.DayInMonthStatus;
 
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class CalenderWeekItemRecyclerView extends RecyclerView {
 
-    private ArrayList<CalenderDayModel> newWeekModel;
+    private ArrayList<CalenderDay> newWeekModel;
     private static LocalDate todayDate = LocalDate.now();
 
     public CalenderWeekItemRecyclerView(@NonNull Context context) {
@@ -45,7 +45,7 @@ public class CalenderWeekItemRecyclerView extends RecyclerView {
 //        this.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, Month.FEBRUARY, 1));
     }
 
-    public void setCalenderWeekModel(ArrayList<CalenderDayModel> weekModel) {
+    public void setCalenderWeekModel(ArrayList<CalenderDay> weekModel) {
         this.newWeekModel = weekModel;
         this.getAdapter().notifyDataSetChanged();
     }
@@ -68,14 +68,14 @@ public class CalenderWeekItemRecyclerView extends RecyclerView {
 
         @Override
         public void onBindViewHolder(@NonNull CalenderWeekViewHolder holder, int position) {
-            CalenderDayModel calenderDayModel = newWeekModel.get(position);
-            holder.getCalendarDayItemView().setThisDay(calenderDayModel);
-            holder.getCalendarDayItemView().setDatumString("" + calenderDayModel.getLocalDate().getDayOfMonth());
+            CalenderDay calenderDay = newWeekModel.get(position);
+            holder.getCalendarDayItemView().setThisDay(calenderDay);
+            holder.getCalendarDayItemView().setDatumString("" + calenderDay.getLocalDate().getDayOfMonth());
 
             /*
             Dif. für aktuellen Tag
              */
-            if (calenderDayModel.isLocalDateActualDate(todayDate)) {
+            if (calenderDay.isLocalDateActualDate(todayDate)) {
                 holder.getCalendarDayItemView().setRingVisibility(false);
                 holder.getCalendarDayItemView().showBgrHighlighted(true);
             } else {
@@ -87,14 +87,14 @@ public class CalenderWeekItemRecyclerView extends RecyclerView {
             Dif. für Anzege für die Tage innerhalb des anzuzeigenden Monats. Info ist aus der Klasse
             @see CalenderDayModelManager erzeugt.
              */
-            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.IN) {
+            if (calenderDay.getDayInMonthStatus() == DayInMonthStatus.IN) {
 //                holder.getCalendarDayItemView().setDatumString("IN" + calenderDayModel.getLocalDate().getDayOfMonth());
             }
-            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.PRE) {
+            if (calenderDay.getDayInMonthStatus() == DayInMonthStatus.PRE) {
 //                holder.getCalendarDayItemView().setDatumString("PRE" + calenderDayModel.getLocalDate().getDayOfMonth());
                 holder.getCalendarDayItemView().setDayTextViewColor(Color.LTGRAY);
             }
-            if (calenderDayModel.getDayInMonthStatus() == DayInMonthStatus.POST) {
+            if (calenderDay.getDayInMonthStatus() == DayInMonthStatus.POST) {
 //                holder.getCalendarDayItemView().setDatumString("OUT" + calenderDayModel.getLocalDate().getDayOfMonth());
                 holder.getCalendarDayItemView().setDayTextViewColor(Color.LTGRAY);
             }

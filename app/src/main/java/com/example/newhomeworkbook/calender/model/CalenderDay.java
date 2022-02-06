@@ -6,12 +6,12 @@ import java.util.ArrayList;
 /**
  * Model für ein Kalendertag
  */
-public class CalenderDayModel {
+public class CalenderDay {
     private LocalDate localDate;
     private ArrayList calenderEvents;
     private DayInMonthStatus dayInMonthStatus;
 
-    public CalenderDayModel(LocalDate localDate){
+    public CalenderDay(LocalDate localDate){
         this.localDate = localDate;
         calenderEvents = new ArrayList<CalendarDayEvent>();
     }

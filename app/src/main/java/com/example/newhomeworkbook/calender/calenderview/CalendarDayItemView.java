@@ -13,16 +13,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.newhomeworkbook.R;
-import com.example.newhomeworkbook.calender.model.CalenderDayModel;
+import com.example.newhomeworkbook.calender.model.CalenderDay;
 import com.example.newhomeworkbook.databinding.CalenderDayViewBinding;
 
 public class CalendarDayItemView extends ConstraintLayout {
     private static final int LABEL_TURNED_IN = R.drawable.ic_baseline_turned_in_24;
     private static final int LABEL_TURNED_IN_NOT = R.drawable.ic_baseline_turned_in_not_24;
 
-    private static CalenderDayModel selectedDay;
+    private static CalenderDay selectedDay;
 
-    private CalenderDayModel thisDay;
+    private CalenderDay thisDay;
 
     private TextView dayTextView;
     private ImageView label;
@@ -81,7 +81,7 @@ public class CalendarDayItemView extends ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // Zugriffsmethoden
     ///////////////////////////////////////////////////////////////////////////
-    public void setThisDay(CalenderDayModel thisDay) {
+    public void setThisDay(CalenderDay thisDay) {
         this.thisDay = thisDay;
     }
 

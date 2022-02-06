@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.newhomeworkbook.calender.model.CalenderDayModel;
+import com.example.newhomeworkbook.calender.model.CalenderDay;
 import com.example.newhomeworkbook.calender.model.CalenderDayModelManager;
 import com.example.newhomeworkbook.databinding.CalenderWeekWithKwViewBinding;
 
@@ -52,7 +52,7 @@ public class CalenderWeekWithKwItemView extends ConstraintLayout {
         calenderWeekItemRecyclerView.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, Month.FEBRUARY, 5));
     }
 
-    public void setCalenderWeekModel(ArrayList<CalenderDayModel> weekModel){
+    public void setCalenderWeekModel(ArrayList<CalenderDay> weekModel){
         calenderWeekItemRecyclerView.setCalenderWeekModel(weekModel);
         calenderWeekTextView.setText("KW 00");
     }
