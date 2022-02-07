@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calender.calenderview;
+package com.example.newhomeworkbook.calendar.views;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -13,16 +13,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.newhomeworkbook.R;
-import com.example.newhomeworkbook.calender.model.CalenderDay;
+import com.example.newhomeworkbook.calendar.model.CalendarDay;
 import com.example.newhomeworkbook.databinding.CalenderDayViewBinding;
 
 public class CalendarDayItemView extends ConstraintLayout {
     private static final int LABEL_TURNED_IN = R.drawable.ic_baseline_turned_in_24;
     private static final int LABEL_TURNED_IN_NOT = R.drawable.ic_baseline_turned_in_not_24;
-
-    private static CalenderDay selectedDay;
-
-    private CalenderDay thisDay;
 
     private TextView dayTextView;
     private ImageView label;
@@ -65,15 +61,7 @@ public class CalendarDayItemView extends ConstraintLayout {
         this.setLabelVisibility(false);
         this.setRingVisibility(false);
 
-        rootView.setOnFocusChangeListener((view, b) -> {
-            if (b) {
-                selectedDay = thisDay;
-                setRingVisibility(true);
-            } else {
-                setRingVisibility(false);
-            }
-        });
-
+        rootView.setOnFocusChangeListener((view, visibility) -> setRingVisibility(visibility));
         rootView.clearFocus();
     }
 
@@ -81,8 +69,7 @@ public class CalendarDayItemView extends ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // Zugriffsmethoden
     ///////////////////////////////////////////////////////////////////////////
-    public void setThisDay(CalenderDay thisDay) {
-        this.thisDay = thisDay;
+    public void setThisDay(CalendarDay thisDay) {
     }
 
     // // LABEL

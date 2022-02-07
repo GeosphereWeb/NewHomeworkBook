@@ -17,13 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.newhomeworkbook.calender.calenderview.CalenderWeekItemRecyclerView
-        android:id="@+id/calenderWeekI_RecyclerView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calenderWeek_RecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:minWidth="45dp"
         android:minHeight="45dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toEndOf="@+id/kalenderWeek_textView"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

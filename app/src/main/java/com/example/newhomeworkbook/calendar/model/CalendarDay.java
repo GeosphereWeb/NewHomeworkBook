@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calender.model;
+package com.example.newhomeworkbook.calendar.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 /**
  * Model für ein Kalendertag
  */
-public class CalenderDay {
+public class CalendarDay {
     private LocalDate localDate;
-    private ArrayList calenderEvents;
+    private ArrayList calendarEvents;
     private DayInMonthStatus dayInMonthStatus;
 
-    public CalenderDay(LocalDate localDate){
+    public CalendarDay(LocalDate localDate){
         this.localDate = localDate;
-        calenderEvents = new ArrayList<CalendarDayEvent>();
+        calendarEvents = new ArrayList<CalendarEvent>();
     }
 
     /**
@@ -30,12 +30,12 @@ public class CalenderDay {
      * Zeigt an, ob Kalenderereignisse vorliegen
      * @return
      */
-    public boolean hasCalenderEvents(){
-        return calenderEvents.isEmpty();
+    public boolean hasCalendarEvents(){
+        return calendarEvents.isEmpty();
     }
 
-    public ArrayList<CalendarDayEvent> getCalenderEvents() {
-        return calenderEvents;
+    public ArrayList<CalendarEvent> getCalendarEvents() {
+        return calendarEvents;
     }
 
     public LocalDate getLocalDate() {

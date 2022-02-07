@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calender.model;
+package com.example.newhomeworkbook.calendar.model;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -7,6 +7,9 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Klasse ist Deprecated. Bitte neue Klasse {@link CalendarWeekModel} benutzen
+ */
 @Deprecated
 public class CalenderDayModelManager {
     private static final WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -23,8 +26,8 @@ public class CalenderDayModelManager {
      * @param weekNumber
      * @return
      */
-    public static ArrayList<CalenderDay> createCalenderWeekModel(int year, Month month, int weekNumber) {
-        ArrayList<CalenderDay> weekModel = new ArrayList<>();
+    public static ArrayList<CalendarDay> createCalenderWeekModel(int year, Month month, int weekNumber) {
+        ArrayList<CalendarDay> weekModel = new ArrayList<>();
 
         LocalDate firstDayInMonth = LocalDate.now().withYear(year).withMonth(month.getValue())
                 .withDayOfMonth(1);
@@ -36,17 +39,17 @@ public class CalenderDayModelManager {
 
         for (int i = 0; i < 7; i++) {
             LocalDate localDate = firstDayInWeek.plusDays(i);
-            CalenderDay calenderDay = new CalenderDay(localDate);
+            CalendarDay calendarDay = new CalendarDay(localDate);
 
             if (localDate.isBefore(firstDayInMonth)) {
-                calenderDay.setDayInMonthStatus(DayInMonthStatus.PRE);
+                calendarDay.setDayInMonthStatus(DayInMonthStatus.BEFORE_ACTUAL_MONTH);
             } else if (localDate.isAfter(lastDayInMonth)) {
-                calenderDay.setDayInMonthStatus(DayInMonthStatus.POST);
+                calendarDay.setDayInMonthStatus(DayInMonthStatus.AFTER_ACTUAL_MONTH);
             } else {
-                calenderDay.setDayInMonthStatus(DayInMonthStatus.IN);
+                calendarDay.setDayInMonthStatus(DayInMonthStatus.IN_ACTUAL_MONTH);
             }
 
-            weekModel.add(calenderDay);
+            weekModel.add(calendarDay);
         }
 
         weekModel.trimToSize();
@@ -54,8 +57,8 @@ public class CalenderDayModelManager {
         return weekModel;
     }
 
-    public static ArrayList<CalenderDay> createCalenderMonthModel(int year, Month month) {
-        ArrayList<CalenderDay> monthModel = new ArrayList<>();
+    public static ArrayList<CalendarDay> createCalenderMonthModel(int year, Month month) {
+        ArrayList<CalendarDay> monthModel = new ArrayList<>();
 
         // Or use a specific locale, or configure your own rules
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
@@ -72,7 +75,7 @@ public class CalenderDayModelManager {
         int lastWeekNr = lastDayInMonth.get(woy);
 
         for (int i = firstWeekNr; i <= lastWeekNr; i++) {
-            ArrayList<CalenderDay> calenderWeekModel = createCalenderWeekModel(year, month, i);
+            ArrayList<CalendarDay> calenderWeekModel = createCalenderWeekModel(year, month, i);
             monthModel.addAll(calenderWeekModel);
         }
 

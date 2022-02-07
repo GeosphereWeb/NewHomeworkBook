@@ -9,10 +9,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.newhomeworkbook.calender.model.CalenderDayModelManager;
+import com.example.newhomeworkbook.calendar.model.CalendarWeekModel;
 import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
-
-import java.time.Month;
 
 
 /**
@@ -72,8 +70,7 @@ public class WelcomeFragment extends Fragment {
         View view = binding.getRoot();
 
         // Setze hier die Kalenderwoche
-//        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderWeekModel(2022, Month.FEBRUARY, 10));
-        binding.caldenderWeekRecycler.setCalenderWeekModel(CalenderDayModelManager.createCalenderMonthModel(2022, Month.FEBRUARY));
+        binding.calenderWeekItem.setCalenderWeekModel(new CalendarWeekModel(2022,7));
 
 
         TextView test = binding.welcomeId;

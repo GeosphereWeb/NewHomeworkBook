@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calender.model;
+package com.example.newhomeworkbook.calendar.model;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 @Deprecated
 public  class CalenderDaysModel {
-    private ArrayList<CalenderDay> calenderModel = new ArrayList<>();
+    private ArrayList<CalendarDay> calenderModel = new ArrayList<>();
 
     private static final WeekFields weekFields = WeekFields.of(Locale.getDefault());
     // Or use a specific locale, or configure your own rules
@@ -25,8 +25,9 @@ public  class CalenderDaysModel {
      * @param weekNumber
      * @return
      */
+    @Deprecated
     public Calenderweek getInstance(int year, int weekNumber){
-        ArrayList<CalenderDay> calenderWeekModel = createCalenderWeekModel(year, null, weekNumber);
+        ArrayList<CalendarDay> calenderWeekModel = createCalenderWeekModel(year, null, weekNumber);
         Calenderweek calenderweek = new Calenderweek(year, calenderWeekModel);
         return calenderweek;
     }
@@ -37,6 +38,7 @@ public  class CalenderDaysModel {
      * @param month
      * @return
      */
+    @Deprecated
     public static CalenderDaysModel getInstance(int year, Month month){
         CalenderDaysModel calenderDaysModel = new CalenderDaysModel();
         calenderDaysModel.calenderModel = createCalenderMonthModel(year, month);
@@ -53,8 +55,10 @@ public  class CalenderDaysModel {
      * @param weekNumber
      * @return
      */
-    private static ArrayList<CalenderDay> createCalenderWeekModel(int year, @Nullable Month month, int weekNumber) {
-        ArrayList<CalenderDay> weekModel = new ArrayList<>();
+
+    @Deprecated
+    private static ArrayList<CalendarDay> createCalenderWeekModel(int year, @Nullable Month month, int weekNumber) {
+        ArrayList<CalendarDay> weekModel = new ArrayList<>();
 
         LocalDate firstDayInWeek = LocalDate.now().withYear(year)
                 .with(weekFields.weekOfYear(), weekNumber)
@@ -62,7 +66,7 @@ public  class CalenderDaysModel {
 
         for (int i = 0; i < 7; i++) {
             LocalDate localDate = firstDayInWeek.plusDays(i);
-            CalenderDay calenderDay = new CalenderDay(localDate);
+            CalendarDay calendarDay = new CalendarDay(localDate);
 
             if (month != null) {
                 LocalDate firstDayInMonth = LocalDate.now().withYear(year).withMonth(month.getValue())
@@ -71,17 +75,17 @@ public  class CalenderDaysModel {
                         .withDayOfMonth(firstDayInMonth.lengthOfMonth());
 
                 if (localDate.isBefore(firstDayInMonth)) {
-                    calenderDay.setDayInMonthStatus(DayInMonthStatus.PRE);
+                    calendarDay.setDayInMonthStatus(DayInMonthStatus.BEFORE_ACTUAL_MONTH);
 
                 } else if (localDate.isAfter(lastDayInMonth)) {
-                    calenderDay.setDayInMonthStatus(DayInMonthStatus.POST);
+                    calendarDay.setDayInMonthStatus(DayInMonthStatus.AFTER_ACTUAL_MONTH);
 
                 } else {
-                    calenderDay.setDayInMonthStatus(DayInMonthStatus.IN);
+                    calendarDay.setDayInMonthStatus(DayInMonthStatus.IN_ACTUAL_MONTH);
                 }
             }
             
-            weekModel.add(calenderDay);
+            weekModel.add(calendarDay);
         }
 
         weekModel.trimToSize();
@@ -95,8 +99,9 @@ public  class CalenderDaysModel {
      * @param month
      * @return
      */
-    private static ArrayList<CalenderDay> createCalenderMonthModel(int year, Month month) {
-        ArrayList<CalenderDay> monthModel = new ArrayList<>();
+    @Deprecated
+    private static ArrayList<CalendarDay> createCalenderMonthModel(int year, Month month) {
+        ArrayList<CalendarDay> monthModel = new ArrayList<>();
 
         LocalDate firstDayInMonth = LocalDate.now().withYear(year).withMonth(month.getValue())
                 .withDayOfMonth(1);
@@ -108,7 +113,7 @@ public  class CalenderDaysModel {
         int lastWeekNr = lastDayInMonth.get(woy);
 
         for (int i = firstWeekNr; i <= lastWeekNr; i++) {
-            ArrayList<CalenderDay> calenderWeekModel = createCalenderWeekModel(year, month, i);
+            ArrayList<CalendarDay> calenderWeekModel = createCalenderWeekModel(year, month, i);
             monthModel.addAll(calenderWeekModel);
         }
 
@@ -122,12 +127,13 @@ public  class CalenderDaysModel {
     /**
      *
      */
+    @Deprecated
     private class Calenderweek {
         private int calenderweek = 0;
 
-        private ArrayList<CalenderDay> weekmodel;
+        private ArrayList<CalendarDay> weekmodel;
 
-        public Calenderweek(int year, ArrayList<CalenderDay> weekmodel) {
+        public Calenderweek(int year, ArrayList<CalendarDay> weekmodel) {
             this.calenderweek = calenderweek;
             this.weekmodel = weekmodel;
         }
@@ -136,7 +142,7 @@ public  class CalenderDaysModel {
             return calenderweek;
         }
 
-        public ArrayList<CalenderDay> getCalenderDays() {
+        public ArrayList<CalendarDay> getCalenderDays() {
             return weekmodel;
         }
 
