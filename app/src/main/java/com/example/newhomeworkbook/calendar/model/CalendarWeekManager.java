@@ -10,7 +10,7 @@ import java.util.Locale;
 /**
  * CalenderWeekModel repräsentiert eine oder mehrere Kalenderwochen.
  */
-public class CalendarWeekModel {
+public class CalendarWeekManager {
     private static WeekFields weekFields = WeekFields.of(Locale.getDefault());
     // Or use a specific locale, or configure your own rules
     private static final TemporalField woy = weekFields.weekOfWeekBasedYear();
@@ -21,7 +21,7 @@ public class CalendarWeekModel {
      * @param year Das Jahr als Integer. Z.B. '2022'
      * @param weekNumber Wochennummer als Integer. '1' entspricht die erste Woche im Jahr
      */
-    public CalendarWeekModel(int year, int weekNumber) {
+    public CalendarWeekManager(int year, int weekNumber) {
         calendarWeeks.add(createCalendarWeek(year, weekNumber));
     }
 
@@ -29,7 +29,7 @@ public class CalendarWeekModel {
      * @param year Das Jahr als Integer. Z.B. '2022'
      * @param month Monat{@link Month} als Monat
      */
-    public CalendarWeekModel(int year, Month month) {
+    public CalendarWeekManager(int year, Month month) {
         // erster und letzter Tag des Monats
         LocalDate firstDayInMonth = LocalDate.now().withYear(year).withMonth(month.getValue()).withDayOfMonth(1);
         LocalDate lastDayInMonth = firstDayInMonth.withDayOfMonth(firstDayInMonth.lengthOfMonth());
@@ -56,19 +56,29 @@ public class CalendarWeekModel {
         return calendarWeeks;
     }
 
+    /**
+     * Gibt das {@link CalendarWeek}-Model zurück
+     * @param position
+     * @return Kalenderwochenmodell
+     */
     public CalendarWeek get(int position) {
         return calendarWeeks.get(position);
     }
 
+    /**
+     *
+     * @return Gibt die Anzahl der Kalenderwochen zurück.
+     */
     public int size(){
+        calendarWeeks.trimToSize();
         return calendarWeeks.size();
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // innere Methoden
     ///////////////////////////////////////////////////////////////////////////
-    /**
-     *
+    /*
+     * Erzeugt eine Kalenderwoche. Das Objekt Kalenderwoche
      */
     private CalendarWeek createCalendarWeek(int year, int weekNumber) {
         LocalDate firstDayInWeek = LocalDate.now().withYear(year)
@@ -85,8 +95,6 @@ public class CalendarWeekModel {
 
         return new CalendarWeek(year, weekModel, weekNumber);
     }
-
-
 
     ///////////////////////////////////////////////////////////////////////////
     // INNERCLASS

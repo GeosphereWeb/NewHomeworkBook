@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.newhomeworkbook.calendar.model.CalendarWeekModel;
+import com.example.newhomeworkbook.calendar.model.CalendarWeekManager;
 import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
 
 
@@ -70,8 +70,7 @@ public class WelcomeFragment extends Fragment {
         View view = binding.getRoot();
 
         // Setze hier die Kalenderwoche
-        binding.calenderWeekItem.setCalenderWeekModel(new CalendarWeekModel(2022,7));
-
+        CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, 8);
 
         TextView test = binding.welcomeId;
         test.setText("werner sagt Welcome");

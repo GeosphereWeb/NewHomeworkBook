@@ -34,10 +34,18 @@ public class CalendarDay {
         return calendarEvents.isEmpty();
     }
 
+    /**
+     *
+     * @return Kalenderereignisse vom Typ CalendarEvent
+     */
     public ArrayList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }
 
+    /**
+     * Gibt das aktuelle Datum als {@link LocalDate} Objekt zurück
+     * @return aktuelles Datum
+     */
     public LocalDate getLocalDate() {
         return localDate;
     }
@@ -49,11 +57,28 @@ public class CalendarDay {
                 '}';
     }
 
+    /**
+     * Gibt den Status zurück, ob der Tag noch im Aktuellen Monat ist, oder vorher oder nachher
+     * @return
+     */
     public DayInMonthStatus getDayInMonthStatus() {
         return dayInMonthStatus;
     }
 
+    /**
+     * Methode zum Setzen des Status, ob der Tag noch im Aktuellen Monat ist, oder vorher oder nachher
+     * @param dayInMonthStatus
+     */
     public void setDayInMonthStatus(DayInMonthStatus dayInMonthStatus) {
         this.dayInMonthStatus = dayInMonthStatus;
+    }
+
+    /**
+     * Gibt den Tag als {@link Integer} zurück.
+     * 1..31
+     * @return
+     */
+    public int getDay() {
+       return localDate.getDayOfMonth();
     }
 }

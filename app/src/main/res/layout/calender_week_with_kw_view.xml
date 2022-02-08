@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/kalenderWeek_textView"
+        android:id="@+id/calendar_week_text_view"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:gravity="center_vertical"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calenderWeek_RecyclerView"
+        android:id="@+id/calendar_week_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:minWidth="45dp"
         android:minHeight="45dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toEndOf="@+id/kalenderWeek_textView"
+        app:layout_constraintStart_toEndOf="@+id/calendar_week_text_view"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

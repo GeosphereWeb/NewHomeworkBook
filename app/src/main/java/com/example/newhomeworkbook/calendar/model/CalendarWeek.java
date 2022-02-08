@@ -3,7 +3,7 @@ package com.example.newhomeworkbook.calendar.model;
 import java.util.ArrayList;
 
 /**
- * Repräsentiert ein WochentagsModell.
+ * Repräsentiert ein Wochentags-Modell. Die Einzelnen Tage stehen in einem Array mit {@link CalendarDay} zur Verfügung.
  */
 public class CalendarWeek {
     private final int weekNumber;
@@ -16,11 +16,15 @@ public class CalendarWeek {
         this.calendarDays = calendarDays;
     }
 
+    /**
+     * Lifert die Wochennummer zurück. 1..52
+     * @return
+     */
     public int getWeekNumber() {
         return weekNumber;
     }
 
-    public ArrayList<CalendarDay> getCalendarDays() {
+    public ArrayList<CalendarDay> getCalendarDaysInWeek() {
         return calendarDays;
     }
 
