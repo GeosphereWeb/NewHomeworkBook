@@ -23,6 +23,9 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
 
     private RecyclerView calendarWeekItemRecyclerView;
     private TextView calendarWeekTextView;
+    private CalenderWeekWithKwViewBinding viewBinding;
+    private ConstraintLayout rootView;
+
 
 
     public CalendarSingleRowWeekView(@NonNull Context context) {
@@ -46,8 +49,8 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
     }
 
     private void init(Context context) {
-        CalenderWeekWithKwViewBinding viewBinding = CalenderWeekWithKwViewBinding.inflate(LayoutInflater.from(context), this, false);
-        ConstraintLayout rootView = viewBinding.getRoot();
+        viewBinding = CalenderWeekWithKwViewBinding.inflate(LayoutInflater.from(context), this, false);
+        rootView = viewBinding.getRoot();
         addView(rootView);
 
         calendarWeekItemRecyclerView = viewBinding.calendarWeekRecyclerView;
@@ -56,11 +59,10 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
 
         calendarWeekTextView = viewBinding.calendarWeekTextView;
 
-
         if (calendarWeek == null) {
             ////
             // START Testbereich
-            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, 12);
+           CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, 1);
             setCalenderWeek(calendarWeekManager.get(0));
             // ENDE Testbereich
         }
@@ -79,14 +81,6 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
         calendarWeekTextView.setText(calendarWeek.getWeekNumber() + "");
     }
 
-    public TextView getCalendarWeekTextView() {
-        return calendarWeekTextView;
-    }
-
-    private RecyclerView getCalendarWeekItemRecyclerView() {
-        return calendarWeekItemRecyclerView;
-    }
-
     ///////////////////////////////////////////////////////////////////////////
     // Inner Class
     ///////////////////////////////////////////////////////////////////////////
@@ -94,7 +88,7 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
     /**
      * Darstellund der Wochentage
      */
-    public class WeekItemsAdapter extends RecyclerView.Adapter<CalenderDayViewHolder> {
+    private class WeekItemsAdapter extends RecyclerView.Adapter<CalenderDayViewHolder> {
 
         public WeekItemsAdapter() {
             super();
@@ -119,14 +113,17 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
 
         @Override
         public int getItemCount() {
-            return calendarWeek.getCalendarDaysInWeek().size();
+            if (calendarWeek != null) {
+                return calendarWeek.getCalendarDaysInWeek().size();
+            }
+            return 0;
         }
     }
 
     /**
      * Einzelner Kalendertag als View
      */
-    public class CalenderDayViewHolder extends RecyclerView.ViewHolder {
+    private class CalenderDayViewHolder extends RecyclerView.ViewHolder {
 
         private final CalendarDayItemView dayItemView;
 

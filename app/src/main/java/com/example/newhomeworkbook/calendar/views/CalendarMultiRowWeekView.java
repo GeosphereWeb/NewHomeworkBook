@@ -16,7 +16,7 @@ import com.example.newhomeworkbook.calendar.model.CalendarWeekManager;
 import java.time.Month;
 
 public class CalendarMultiRowWeekView extends RecyclerView {
-    CalendarWeekManager calendarWeekManager;
+
     private MultiWeeksAdapter multiWeeksAdapter;
 
     public CalendarMultiRowWeekView(@NonNull Context context) {
@@ -39,10 +39,10 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         multiWeeksAdapter = new MultiWeeksAdapter();
         this.setAdapter(multiWeeksAdapter);
 
-        if (calendarWeekManager == null) {
+        if (multiWeeksAdapter.calendarWeekManager == null) {
             ////
             // START Testbereich
-            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.APRIL);
+            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.FEBRUARY);
             setCalendarWeekManager(calendarWeekManager);
             // ENDE Testbereich
         }
@@ -52,11 +52,18 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         multiWeeksAdapter.setCalendarWeekManager(calendarWeekManager);
     }
 
-    private class MultiWeeksAdapter extends Adapter<MyViewHolder> {
+    ///////////////////////////////////////////////////////////////////////////
+    // Inner Class
+    ///////////////////////////////////////////////////////////////////////////
 
-        public void setCalendarWeekManager(CalendarWeekManager calendarWeekManager) {
-            CalendarMultiRowWeekView.this.calendarWeekManager = calendarWeekManager;
-            this.notifyDataSetChanged();
+    /**
+     *
+     */
+    private class MultiWeeksAdapter extends Adapter<MyViewHolder> {
+        private CalendarWeekManager calendarWeekManager;
+
+        public MultiWeeksAdapter() {
+            this.calendarWeekManager = new CalendarWeekManager(2022, Month.FEBRUARY);
         }
 
         @NonNull
@@ -68,11 +75,14 @@ public class CalendarMultiRowWeekView extends RecyclerView {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+            CalendarWeek calendarWeek = calendarWeekManager.get(position);
+            holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeek);
+
             // FIXME: 08.02.2022 Läuft auf Fehler. vielleicht ist das kalendermanager null
-            if (calendarWeekManager != null) {
-                CalendarWeek calendarWeekModel = calendarWeekManager.get(position);
-                holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeekModel);
-            }
+//            if (calendarWeekManager != null) {
+//                CalendarWeek calendarWeekModel = calendarWeekManager.get(position);
+//                holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeekModel);
+//            }
         }
 
         @Override
@@ -80,16 +90,24 @@ public class CalendarMultiRowWeekView extends RecyclerView {
             if (calendarWeekManager != null) {
                 return calendarWeekManager.size();
             } else return 0;
+        }
 
+        public void setCalendarWeekManager(CalendarWeekManager calendarWeekManager) {
+            this.calendarWeekManager = calendarWeekManager;
+            this.notifyDataSetChanged();
         }
     }
 
+    /**
+     *
+     */
     private class MyViewHolder extends ViewHolder {
         CalendarSingleRowWeekView calendarSingleRowWeekView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            CalendarSingleRowWeekView calendarSingleRowWeekView = (CalendarSingleRowWeekView) itemView;
+            calendarSingleRowWeekView = (CalendarSingleRowWeekView) itemView;
+
         }
     }
 
