@@ -16,7 +16,7 @@ import com.example.newhomeworkbook.calendar.model.CalendarWeekManager;
 import java.time.Month;
 
 public class CalendarMultiRowWeekView extends RecyclerView {
-
+    private CalendarWeekManager calendarWeekManager;
     private MultiWeeksAdapter multiWeeksAdapter;
 
     public CalendarMultiRowWeekView(@NonNull Context context) {
@@ -39,10 +39,11 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         multiWeeksAdapter = new MultiWeeksAdapter();
         this.setAdapter(multiWeeksAdapter);
 
-        if (multiWeeksAdapter.calendarWeekManager == null) {
+        if (calendarWeekManager == null) {
             ////
             // START Testbereich
-            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.FEBRUARY);
+            // FIXME: 09.02.2022 Monta Januar wird nicht dargestellt
+            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.JANUARY);
             setCalendarWeekManager(calendarWeekManager);
             // ENDE Testbereich
         }
@@ -60,11 +61,6 @@ public class CalendarMultiRowWeekView extends RecyclerView {
      *
      */
     private class MultiWeeksAdapter extends Adapter<MyViewHolder> {
-        private CalendarWeekManager calendarWeekManager;
-
-        public MultiWeeksAdapter() {
-            this.calendarWeekManager = new CalendarWeekManager(2022, Month.FEBRUARY);
-        }
 
         @NonNull
         @Override
@@ -77,12 +73,6 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             CalendarWeek calendarWeek = calendarWeekManager.get(position);
             holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeek);
-
-            // FIXME: 08.02.2022 Läuft auf Fehler. vielleicht ist das kalendermanager null
-//            if (calendarWeekManager != null) {
-//                CalendarWeek calendarWeekModel = calendarWeekManager.get(position);
-//                holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeekModel);
-//            }
         }
 
         @Override
@@ -93,7 +83,7 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         }
 
         public void setCalendarWeekManager(CalendarWeekManager calendarWeekManager) {
-            this.calendarWeekManager = calendarWeekManager;
+            CalendarMultiRowWeekView.this.calendarWeekManager = calendarWeekManager;
             this.notifyDataSetChanged();
         }
     }

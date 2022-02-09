@@ -26,6 +26,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/schoolSubject_id"
-        tools:itemCount="5" />
+        tools:itemCount="5"
+        tools:listitem="@layout/calender_week_with_kw_view"
+        tools:orientation="vertical" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

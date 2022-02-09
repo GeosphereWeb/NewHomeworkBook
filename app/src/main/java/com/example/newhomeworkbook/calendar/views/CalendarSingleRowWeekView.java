@@ -62,7 +62,7 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
         if (calendarWeek == null) {
             ////
             // START Testbereich
-           CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, 1);
+           CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, 2);
             setCalenderWeek(calendarWeekManager.get(0));
             // ENDE Testbereich
         }

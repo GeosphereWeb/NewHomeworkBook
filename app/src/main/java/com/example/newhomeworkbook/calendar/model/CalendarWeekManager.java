@@ -38,6 +38,8 @@ public class CalendarWeekManager {
         int firstWeekNrInMonth = firstDayInMonth.get(woy);
         int lastWeekNrInMonth = lastDayInMonth.get(woy);
 
+        // FIXME: 09.02.2022 bei KW52 auf Jahreswechsel +1 ist die KW1 oder später. Dies kann so in der IF Schleiffe nicht druchgeführt werden
+        // Schleife überarbeiten.
         for (int i = firstWeekNrInMonth; i <= lastWeekNrInMonth; i++) {
 
             CalendarWeek calendarWeek = createCalendarWeek(year, i);

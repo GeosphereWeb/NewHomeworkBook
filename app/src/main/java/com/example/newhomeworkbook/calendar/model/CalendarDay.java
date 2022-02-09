@@ -6,36 +6,27 @@ import java.util.ArrayList;
 /**
  * Model für ein Kalendertag
  */
-public class CalendarDay {
-    private LocalDate localDate;
+public class CalendarDay extends Day implements DayInMonthStatus, CalendarEvent {
+
     private ArrayList calendarEvents;
-    private DayInMonthStatus dayInMonthStatus;
+    private MonthStatus monthStatus;
 
-    public CalendarDay(LocalDate localDate){
-        this.localDate = localDate;
+    public CalendarDay(LocalDate localDate) {
+        super(localDate);
         calendarEvents = new ArrayList<CalendarEvent>();
-    }
 
-    /**
-     * Vergleicht das zu  überprüfenden Datum auf das des Objektes
-     * @param dateToCompare
-     * @return
-     */
-    public boolean isLocalDateActualDate(LocalDate dateToCompare){
-        boolean equal = this.localDate.isEqual(dateToCompare);
-        return equal;
     }
 
     /**
      * Zeigt an, ob Kalenderereignisse vorliegen
+     *
      * @return
      */
-    public boolean hasCalendarEvents(){
+    public boolean hasCalendarEvents() {
         return calendarEvents.isEmpty();
     }
 
     /**
-     *
      * @return Kalenderereignisse vom Typ CalendarEvent
      */
     public ArrayList<CalendarEvent> getCalendarEvents() {
@@ -43,42 +34,16 @@ public class CalendarDay {
     }
 
     /**
-     * Gibt das aktuelle Datum als {@link LocalDate} Objekt zurück
-     * @return aktuelles Datum
+     * Methode zum Setzen des Status, ob der Tag noch im Aktuellen Monat ist, oder vorher oder nachher
+     *
+     * @param monthStatus
      */
-    public LocalDate getLocalDate() {
-        return localDate;
+    public void setDayInMonthStatus(MonthStatus monthStatus) {
+        this.monthStatus = monthStatus;
     }
 
     @Override
-    public String toString() {
-        return "CalenderDayModel{" +
-                "localDate=" + localDate +
-                '}';
-    }
-
-    /**
-     * Gibt den Status zurück, ob der Tag noch im Aktuellen Monat ist, oder vorher oder nachher
-     * @return
-     */
-    public DayInMonthStatus getDayInMonthStatus() {
-        return dayInMonthStatus;
-    }
-
-    /**
-     * Methode zum Setzen des Status, ob der Tag noch im Aktuellen Monat ist, oder vorher oder nachher
-     * @param dayInMonthStatus
-     */
-    public void setDayInMonthStatus(DayInMonthStatus dayInMonthStatus) {
-        this.dayInMonthStatus = dayInMonthStatus;
-    }
-
-    /**
-     * Gibt den Tag als {@link Integer} zurück.
-     * 1..31
-     * @return
-     */
-    public int getDay() {
-       return localDate.getDayOfMonth();
+    public MonthStatus getDayInMonthStatus() {
+        return monthStatus;
     }
 }
