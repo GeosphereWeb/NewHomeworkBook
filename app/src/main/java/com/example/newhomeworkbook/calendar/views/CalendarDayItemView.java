@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.newhomeworkbook.R;
-import com.example.newhomeworkbook.calendar.model.CalendarDay;
 import com.example.newhomeworkbook.databinding.CalenderDayViewBinding;
 
 public class CalendarDayItemView extends ConstraintLayout {
@@ -23,6 +21,8 @@ public class CalendarDayItemView extends ConstraintLayout {
     private TextView dayTextView;
     private ImageView label;
     private GradientDrawable gradientDrawable;
+
+    private boolean aktualDay;
 
     public CalendarDayItemView(Context context) {
         super(context);
@@ -39,10 +39,6 @@ public class CalendarDayItemView extends ConstraintLayout {
         init(context);
     }
 
-    public CalendarDayItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Initialisierung
@@ -59,9 +55,10 @@ public class CalendarDayItemView extends ConstraintLayout {
         gradientDrawable = (GradientDrawable) dayTextView.getBackground();
 
         this.setLabelVisibility(false);
-        this.setRingVisibility(false);
+        this.showRing(false);
 
-        rootView.setOnFocusChangeListener((view, visibility) -> setRingVisibility(visibility));
+        // Listener
+        rootView.setOnFocusChangeListener((view, visibility) -> showRing(visibility));
         rootView.clearFocus();
     }
 
@@ -69,12 +66,10 @@ public class CalendarDayItemView extends ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // Zugriffsmethoden
     ///////////////////////////////////////////////////////////////////////////
-    public void setThisDay(CalendarDay thisDay) {
-    }
 
-    // // LABEL
-    public void setLabelType(int labelTurnedConst) {
-        label.setImageResource(labelTurnedConst);
+    // // TEXT
+    public void setDatumString(String datumText) {
+        dayTextView.setText(datumText);
     }
 
     public void setLabelVisibility(Boolean visibility) {
@@ -87,38 +82,57 @@ public class CalendarDayItemView extends ConstraintLayout {
     }
 
     // // RING
-    public void setRingVisibility(boolean visibility) {
+    private void showRing(boolean visibility) {
         //Stroke
-        if (visibility) {
-            gradientDrawable.setStroke(6, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_bgr_inverseActualDay));
+        if (visibility && !aktualDay) {
+            gradientDrawable.setStroke(6, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
         } else {
-            gradientDrawable.setStroke(0, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_bgr_inverseActualDay));
+            gradientDrawable.setStroke(0, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
         }
     }
 
-    // // TEXT
-    public void setDatumString(String datumText) {
-        dayTextView.setText(datumText);
+    private void showBgrHighlighted(boolean highlight) {
+        gradientDrawable.mutate();
+        if (highlight) {
+            if (aktualDay) {
+                dayTextView.setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.calender_light_day_bubble_onActualDay));
+            }
+            gradientDrawable.setColor(ContextCompat.getColor(getContext(),
+                    R.color.calender_light_day_bubble_ActualDay));
+            dayTextView.setTextColor(ContextCompat.getColor(getContext(),
+                    R.color.calender_light_day_bubble_ActualDay));
+        }
+    }
+
+    public boolean isAktualDay() {
+        return aktualDay;
+    }
+
+    public void setAsAktualDay(boolean aktualDay) {
+        this.aktualDay = aktualDay;
+    }
+
+
+    // // LABEL
+    private void setLabelType(int labelTurnedConst) {
+        label.setImageResource(labelTurnedConst);
     }
 
     // // TEXTVIEW
-    public void setDayTextViewColor(@ColorInt int color) {
-        dayTextView.setTextColor(color);
+    private void setDayTextViewColor() {
+        if (aktualDay){
+            dayTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_onActualDay
+            ));
+        } else {
+            dayTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.md_theme_light_onBackground
+               ));
+        }
+
     }
 
     // // HINTERGRUND
-    public GradientDrawable getGradientDrawable() {
+    private GradientDrawable getGradientDrawable() {
         return gradientDrawable;
     }
-    public void showBgrHighlighted(boolean highlight) {
-        gradientDrawable.mutate();
-        if (highlight) {
-            gradientDrawable.setColor(ContextCompat.getColor(getContext(),
-                    R.color.calender_light_day_bubble_bgr_actualDay));
-            dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-                    R.color.calender_light_day_bubble_text_inverseActualDay));
-        }
-    }
-
-
 }

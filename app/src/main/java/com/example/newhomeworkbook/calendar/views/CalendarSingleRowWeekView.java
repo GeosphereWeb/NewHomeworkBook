@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.newhomeworkbook.calendar.model.CalendarDay;
 import com.example.newhomeworkbook.calendar.model.CalendarWeek;
 import com.example.newhomeworkbook.calendar.model.CalendarWeekManager;
 import com.example.newhomeworkbook.databinding.CalenderWeekWithKwViewBinding;
@@ -25,7 +26,6 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
     private TextView calendarWeekTextView;
     private CalenderWeekWithKwViewBinding viewBinding;
     private ConstraintLayout rootView;
-
 
 
     public CalendarSingleRowWeekView(@NonNull Context context) {
@@ -62,7 +62,7 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
         if (calendarWeek == null) {
             ////
             // START Testbereich
-           CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2021, 52);
+            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2021, 52);
             setCalenderWeek(calendarWeekManager.get(0));
             // ENDE Testbereich
         }
@@ -108,7 +108,10 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
 
         @Override
         public void onBindViewHolder(@NonNull CalenderDayViewHolder holder, int position) {
-            holder.dayItemView.setDatumString(calendarWeek.getCalendarDayAt(position).getDay() + "");
+            CalendarDay calendarDayAt = calendarWeek.getCalendarDayAt(position);
+
+            holder.dayItemView.setDatumString(calendarDayAt.getDay() + "");
+            holder.dayItemView.setAsAktualDay(calendarDayAt.isToday());
         }
 
         @Override

@@ -52,15 +52,11 @@
     <color name="md_theme_dark_inverseSurface">#E6E1E6</color>
     <color name="md_theme_dark_primaryInverse">#634DB2</color>
 
-    <color name="calender_light_day_bubble_text_ActualDay">#171822</color>
-    <color name="calender_light_day_bubble_text_inverseActualDay">#AAADCA</color>
-    <color name="calender_light_day_bubble_bgr_actualDay">#536DFE</color>
-    <color name="calender_light_day_bubble_bgr_inverseActualDay">#292C3E</color>
+    <color name="calender_light_day_bubble_ActualDay">#304FFE</color>
+    <color name="calender_light_day_bubble_onActualDay">#94AFF8</color>
 
-    <color name="calender_dark_day_bubble_text_ActualDay">#38383C</color>
-    <color name="calender_dark_day_bubble_text_inverseActualDay">#C0B5E1</color>
-    <color name="calender_dark_day_bubble_bgr_actualDay">#341881</color>
-    <color name="calender_dark_day_bubble_bgr_inverseActualDay">#C0B5E1</color>
+    <color name="calender_dark_day_bubble_ActualDay">#38383C</color>
+    <color name="calender_dark_day_bubble_onActualDay">#C0B5E1</color>
 
     <color name="calender_day_bubble_actualDay">#341881</color>
     <color name="seed">#341881</color>
