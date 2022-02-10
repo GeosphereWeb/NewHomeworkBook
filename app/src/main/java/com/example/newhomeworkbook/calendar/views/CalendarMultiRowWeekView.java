@@ -42,8 +42,7 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         if (calendarWeekManager == null) {
             ////
             // START Testbereich
-            // FIXME: 09.02.2022 Monta Januar wird nicht dargestellt
-            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.JANUARY);
+            CalendarWeekManager calendarWeekManager = new CalendarWeekManager(2022, Month.FEBRUARY);
             setCalendarWeekManager(calendarWeekManager);
             // ENDE Testbereich
         }

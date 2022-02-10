@@ -2,7 +2,7 @@ package com.example.newhomeworkbook.calendar.model;
 
 import java.time.LocalDate;
 
-public class Day {
+public abstract class Day {
     protected LocalDate localDate;
     protected boolean today;
 
