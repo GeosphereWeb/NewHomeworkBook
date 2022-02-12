@@ -113,14 +113,26 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
             holder.dayItemView.setDatumString(calendarDayAt.getDay() + "");
             holder.dayItemView.setAsActualDay(calendarDayAt.isToday());
 
+            // Ausserhalb des Monats die Erscheinung verblasst anzeigen
             if (calendarDayAt.getDayInMonthStatus() != null) {
                 switch (calendarDayAt.getDayInMonthStatus()) {
                     case IN_ACTUAL_MONTH:
                         holder.dayItemView.setOutAutActualMonth(true);
                         break;
+//                    case BEFORE_ACTUAL_MONTH:
+//                        holder.dayItemView.setOutAutActualMonth(true);
+//                        break;
+//                    case AFTER_ACTUAL_MONTH:
+//                        holder.dayItemView.setOutAutActualMonth(true);
+//                        break;
                     default:
                         holder.dayItemView.setOutAutActualMonth(false);
                 }
+            }
+
+            // Aktuelles(heutiges) Datum gleich hervorheben
+            if (calendarDayAt.isToday()){
+                holder.dayItemView.requestFocus();
             }
         }
 

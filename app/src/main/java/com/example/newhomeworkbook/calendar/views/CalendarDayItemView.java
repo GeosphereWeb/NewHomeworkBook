@@ -56,11 +56,12 @@ public class CalendarDayItemView extends ConstraintLayout {
         label = viewBinding.label;
         gradientDrawable = (GradientDrawable) dayTextView.getBackground();
 
+        // Standartmäßig alles nicht darstellen
         this.setLabelVisibility(false);
         this.showRing(false);
 
         // Listener
-        rootView.setOnFocusChangeListener((view, visibility) -> changeItemStatus(visibility));
+        rootView.setOnFocusChangeListener((view, visibility) -> setAsSelected(visibility));
         rootView.clearFocus();
     }
 
@@ -68,7 +69,7 @@ public class CalendarDayItemView extends ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // Zugriffsmethoden
     ///////////////////////////////////////////////////////////////////////////
-    public void changeItemStatus(boolean selecting) {
+    public void setAsSelected(boolean selecting) {
         showRing(selecting);
         showBgrHighlighted(selecting);
         setDayTextViewColor(selecting);
@@ -123,7 +124,7 @@ public class CalendarDayItemView extends ConstraintLayout {
                 android.R.color.primary_text_light));
         if (highlighted) {
             if (actualDay){
-                dayTextView.setTextColor(ContextCompat.getColor(getContext(),  R.color.calender_light_day_bubble_onActualDay));
+                dayTextView.setTextColor(ContextCompat.getColor(getContext(),  R.color.md_theme_light_surface));
                 dayTextView.setTypeface(dayTextView.getTypeface(), Typeface.BOLD);
             }else {
                 dayTextView.setTextColor(ContextCompat.getColor(getContext(),
