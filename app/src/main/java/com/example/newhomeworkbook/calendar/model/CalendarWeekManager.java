@@ -1,5 +1,7 @@
 package com.example.newhomeworkbook.calendar.model;
 
+import androidx.annotation.Nullable;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
@@ -25,16 +27,17 @@ public class CalendarWeekManager {
      * @param weekNumber Wochennummer als Integer. '1' entspricht die erste Woche im Jahr
      */
     public CalendarWeekManager(int year, int weekNumber) {
-        calendarWeeks.add(createCalendarWeek(year, weekNumber));
+        calendarWeeks.add(createCalendarWeek(year, weekNumber, null));
     }
 
     /**
      * fix
+     *
      * @param year  Das Jahr als Integer. Z.B. '2022'
      * @param month Monat{@link Month} als Monat
      */
     public CalendarWeekManager(int year, Month month) {
-        // FIXME: 10.02.2022 funktioniert nur in Deutschsprachigen Bereich. Die Datumsberechnung muss generischer werden.
+
         // erster und letzter Tag des Monats
         LocalDate firstDayInMonth = LocalDate.now().withYear(year).withMonth(month.getValue()).withDayOfMonth(1);
         LocalDate lastDayInMonth = firstDayInMonth.withDayOfMonth(firstDayInMonth.lengthOfMonth());
@@ -42,7 +45,7 @@ public class CalendarWeekManager {
 //        // Erste und letzte Wochennummer des Monats
 //        int firstWeekNrInMonth = firstDayInMonth.get(weekOfYear);
 //        int lastWeekNrInMonth = lastDayInMonth.get(weekOfYear);
-
+        // FIXME: 10.02.2022 funktioniert nur in Deutschsprachigen Bereich. Die Datumsberechnung muss generischer werden.
         LocalDate firstDayInFullMonth = firstDayInMonth.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         LocalDate lastDayInFullMonth = lastDayInMonth.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
 
@@ -67,15 +70,13 @@ public class CalendarWeekManager {
         System.out.println("number of weeks "+ weeks);
         */
 
-        // Schleife überarbeiten.
         for (int i = 0; i < weekCount; i++) {
             LocalDate plusWeeks = firstDayInMonth.plusWeeks(i);
             int firstWeekNrInMonth2 = plusWeeks.get(weekOfYear);
 
-            CalendarWeek calendarWeek = createCalendarWeek(year, firstWeekNrInMonth2);
+            CalendarWeek calendarWeek = createCalendarWeek(year, firstWeekNrInMonth2, month);
             calendarWeeks.add(calendarWeek);
         }
-
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -115,7 +116,7 @@ public class CalendarWeekManager {
     /*
      * Erzeugt eine Kalenderwoche. Das Objekt Kalenderwoche
      */
-    private CalendarWeek createCalendarWeek(int year, int weekNumber) {
+    private CalendarWeek createCalendarWeek(int year, int weekNumber,@Nullable Month month) {
         LocalDate firstDayInWeek = LocalDate.now().withYear(year)
                 .with(weekFields.weekOfYear(), weekNumber)
                 .with(weekFields.dayOfWeek(), 1);
@@ -125,9 +126,24 @@ public class CalendarWeekManager {
         for (int i = 0; i < 7; i++) {
             LocalDate localDate = firstDayInWeek.plusDays(i);
             CalendarDay calendarDay = new CalendarDay(localDate);
+
+            if (month != null) {
+                int dayInMonthPosition = localDate.getMonth().compareTo(month);
+                if(dayInMonthPosition < 0){
+                    calendarDay.setDayInMonthStatus(MonthStatus.BEFORE_ACTUAL_MONTH);
+                }
+                if (dayInMonthPosition == 0){
+                    calendarDay.setDayInMonthStatus(MonthStatus.IN_ACTUAL_MONTH);
+                }
+                if (dayInMonthPosition > 0){
+                    calendarDay.setDayInMonthStatus(MonthStatus.AFTER_ACTUAL_MONTH);
+                }
+            }
+
             weekModel.add(calendarDay);
         }
 
         return new CalendarWeek(year, weekModel, weekNumber);
     }
+
 }

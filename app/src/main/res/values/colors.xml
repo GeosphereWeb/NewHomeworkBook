@@ -53,7 +53,7 @@
     <color name="md_theme_dark_primaryInverse">#634DB2</color>
 
     <color name="calender_light_day_bubble_ActualDay">#304FFE</color>
-    <color name="calender_light_day_bubble_onActualDay">#94AFF8</color>
+    <color name="calender_light_day_bubble_onActualDay">#CEDBFD</color>
 
     <color name="calender_dark_day_bubble_ActualDay">#38383C</color>
     <color name="calender_dark_day_bubble_onActualDay">#C0B5E1</color>

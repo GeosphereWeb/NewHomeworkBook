@@ -111,7 +111,17 @@ public class CalendarSingleRowWeekView extends ConstraintLayout {
             CalendarDay calendarDayAt = calendarWeek.getCalendarDayAt(position);
 
             holder.dayItemView.setDatumString(calendarDayAt.getDay() + "");
-            holder.dayItemView.setAsAktualDay(calendarDayAt.isToday());
+            holder.dayItemView.setAsActualDay(calendarDayAt.isToday());
+
+            if (calendarDayAt.getDayInMonthStatus() != null) {
+                switch (calendarDayAt.getDayInMonthStatus()) {
+                    case IN_ACTUAL_MONTH:
+                        holder.dayItemView.setOutAutActualMonth(true);
+                        break;
+                    default:
+                        holder.dayItemView.setOutAutActualMonth(false);
+                }
+            }
         }
 
         @Override
