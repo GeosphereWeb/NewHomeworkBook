@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,6 +54,10 @@ public class CalendarDayItemView extends ConstraintLayout {
         ConstraintLayout rootView = viewBinding.getRoot();
         addView(rootView);
 
+        rootView.setClickable(true);
+        rootView.setFocusable(true);
+        rootView.setFocusableInTouchMode(true);
+
         dayTextView = viewBinding.calenderDayTextView;
         label = viewBinding.label;
         gradientDrawable = (GradientDrawable) dayTextView.getBackground();
@@ -62,6 +68,12 @@ public class CalendarDayItemView extends ConstraintLayout {
 
         // Listener
         rootView.setOnFocusChangeListener((view, visibility) -> setAsSelected(visibility));
+        rootView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("WERNER", "onClick: in CalenderDayItemView gecklicked");
+            }
+        });
         rootView.clearFocus();
     }
 

@@ -10,7 +10,7 @@
         android:id="@+id/calendar_week_text_view"
         android:layout_width="30dp"
         android:layout_height="45dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:minHeight="45dp"
         android:text="10"
         android:textAlignment="center"
