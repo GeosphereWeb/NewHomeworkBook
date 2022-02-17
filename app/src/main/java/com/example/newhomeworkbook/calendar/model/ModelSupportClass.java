@@ -13,11 +13,16 @@ import java.util.Locale;
 
 public abstract class ModelSupportClass {
     /**
-     * http://javatricks.de/tricks/kalenderwoche-von-datum-ermitteln-kalenderwoche-in-datum-umwandeln
-     * LocalDate localDate = LocalDate.of(2016, Month.JANUARY, 3);
-     * int weekNumber = localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-     * System.out.println(weekNumber);
+     * <p>http://javatricks.de/tricks/kalenderwoche-von-datum-ermitteln-kalenderwoche-in-datum-umwandeln
+     *
+     * <blockquote>
+     *     <pre>
+     *     LocalDate localDate = LocalDate.of(2016, Month.JANUARY, 3);
+     *     int weekNumber = localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+     *     System.out.println(weekNumber);
+     *     </pre>
      * //Ausgabe: 53
+     * </blockquote>
      *
      * Die Zeile localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) gibt die Kalenderwoche für das Datum zurück.
      *
@@ -38,6 +43,22 @@ public abstract class ModelSupportClass {
      * System.out.println(start);
      * // Ausgabe: 2015-12-28
      *
+     * <P>
+     * <P>
+     * <blockquote>
+     * <pre>
+     * [Java 8]
+     *
+     * int year = 2018;
+     * int weekNumber = 1;
+     *
+     * LocalDate date = LocalDate.of(year, Month.JANUARY, 10);
+     * LocalDate dayInWeek = date.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, weekNumber);
+     * LocalDate start = dayInWeek.with(DayOfWeek.MONDAY);
+     *
+     * System.out.println(start);
+     * </pre>
+     * </blockquote>
      */
     // private static final ArrayList<Integer> weekendPosition = new ArrayList<>();
     private static Locale LOCALE = Locale.getDefault();
