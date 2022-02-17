@@ -11,7 +11,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.newhomeworkbook.calendar.model.ModelSupportClass;
+import com.example.newhomeworkbook.calendar.model.Weekmodel;
 import com.example.newhomeworkbook.databinding.ActivityMainBinding;
+
+import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     @NonNull
@@ -20,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ModelSupportClass instance = ModelSupportClass.INSTANCE;
+        ArrayList<DayOfWeek> dayNamesOfWeek = instance.getDayOfWeekSortedList();
+        Weekmodel weekmodel = instance.instantiateWeekmodel(2004, 1);
+
+        instance.switchToNewLocal(Locale.US);
+        ArrayList<DayOfWeek> dayNamesOfWeek1 = instance.getDayOfWeekSortedList();
+        Weekmodel weekmodel1 = instance.instantiateWeekmodel(2004, 1);
+
 
         // Inflating XML
         binding = ActivityMainBinding.inflate(getLayoutInflater());

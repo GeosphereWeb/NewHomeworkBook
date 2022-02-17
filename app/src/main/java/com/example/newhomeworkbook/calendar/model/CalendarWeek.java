@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Repräsentiert ein Wochentags-Modell. Die Einzelnen Tage stehen in einem Array mit {@link CalendarDay} zur Verfügung.
  */
+@Deprecated
 public class CalendarWeek {
     private final int weekNumber;
     private final ArrayList<CalendarDay> calendarDays;

@@ -1,7 +1,5 @@
 package com.example.newhomeworkbook.calendar.model;
 
-import androidx.annotation.Nullable;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
@@ -15,6 +13,7 @@ import java.util.Locale;
 /**
  * CalenderWeekModel repräsentiert eine oder mehrere Kalenderwochen.
  */
+@Deprecated
 public class CalendarWeekManager {
     private static WeekFields weekFields = WeekFields.of(Locale.getDefault());
     // Or use a specific locale, or configure your own rules
@@ -116,7 +115,7 @@ public class CalendarWeekManager {
     /*
      * Erzeugt eine Kalenderwoche. Das Objekt Kalenderwoche
      */
-    private CalendarWeek createCalendarWeek(int year, int weekNumber,@Nullable Month month) {
+    private CalendarWeek createCalendarWeek(int year, int weekNumber, Month month) {
         LocalDate firstDayInWeek = LocalDate.now().withYear(year)
                 .with(weekFields.weekOfYear(), weekNumber)
                 .with(weekFields.dayOfWeek(), 1);
