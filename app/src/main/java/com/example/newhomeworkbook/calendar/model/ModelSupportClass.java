@@ -12,6 +12,33 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public abstract class ModelSupportClass {
+    /**
+     * http://javatricks.de/tricks/kalenderwoche-von-datum-ermitteln-kalenderwoche-in-datum-umwandeln
+     * LocalDate localDate = LocalDate.of(2016, Month.JANUARY, 3);
+     * int weekNumber = localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+     * System.out.println(weekNumber);
+     * //Ausgabe: 53
+     *
+     * Die Zeile localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) gibt die Kalenderwoche für das Datum zurück.
+     *
+     * Doch Achtung: Das gilt nur für das bei uns im Deutschsprachigen Raum gültige Kalendersystem laut ISO-8601. Möchte man ein anderes System verwenden muss das Locale explizit angegeben werden:
+     *
+     * LocalDate date= LocalDate.of(2016, Month.JANUARY, 3);
+     * TemporalField woy = WeekFields.of(Locale.CANADA).weekOfWeekBasedYear();
+     * System.out.println(date.get(woy));
+     * // Ausgabe: 2
+     *
+     * Das Datum für eine bestimmte Kalenderwoche wird berechnet, indem ein beliebiges Datum im Jahr erstellt wird und dann die Kalenderwoche gesetzt wird. um den ersten Tag der Woche zu ermitteln, wird DayOfWeek.MONDAY gesetzt.
+     *
+     * int year = 2015;
+     * int weekNumber = 53;
+     * LocalDate date = LocalDate.of(year, Month.JANUARY, 10);
+     * LocalDate dayInWeek = date.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, weekNumber);
+     * LocalDate start = dayInWeek.with(DayOfWeek.MONDAY);
+     * System.out.println(start);
+     * // Ausgabe: 2015-12-28
+     *
+     */
     // private static final ArrayList<Integer> weekendPosition = new ArrayList<>();
     private static Locale LOCALE = Locale.getDefault();
     private static WeekFields weekFields = WeekFields.of(LOCALE);
@@ -67,7 +94,6 @@ public abstract class ModelSupportClass {
     }
 
     /**
-     *
      * @param locale
      */
     public void switchToNewLocal(Locale locale) {
@@ -98,7 +124,6 @@ public abstract class ModelSupportClass {
                     .with(weekFields.dayOfWeek(), 1);
 
 
-
             LocalDate firstDay = null;
             if (month != null) {
                 firstDay = YearMonth.of(year, month).atDay(1);
@@ -109,11 +134,11 @@ public abstract class ModelSupportClass {
                 CalendarDay calendarDay = new CalendarDay(localDateInWeek);
 
                 if (month != null) {
-                    if (localDateInWeek.isBefore(firstDay)){
+                    if (localDateInWeek.isBefore(firstDay)) {
                         calendarDay.setDayInMonthStatus(MonthStatus.BEFORE_ACTUAL_MONTH);
-                    }else if(localDateInWeek.isEqual(firstDay)){
+                    } else if (localDateInWeek.isEqual(firstDay)) {
                         calendarDay.setDayInMonthStatus(MonthStatus.IN_ACTUAL_MONTH);
-                    }else if (localDateInWeek.isAfter(firstDay)){
+                    } else if (localDateInWeek.isAfter(firstDay)) {
                         calendarDay.setDayInMonthStatus(MonthStatus.AFTER_ACTUAL_MONTH);
                     }
                 }
