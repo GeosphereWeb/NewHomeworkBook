@@ -1,6 +1,7 @@
 package com.example.newhomeworkbook;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.newhomeworkbook.calendar.model.ModelSupportClass;
+import com.example.newhomeworkbook.calendar.model.Monthmodel;
 import com.example.newhomeworkbook.calendar.model.Weekmodel;
 import com.example.newhomeworkbook.databinding.ActivityMainBinding;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -28,13 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ModelSupportClass instance = ModelSupportClass.INSTANCE;
-        ArrayList<DayOfWeek> dayNamesOfWeek = instance.getDayOfWeekSortedList();
-        Weekmodel weekmodel = instance.instantiateWeekmodel(2004, 1);
+        ArrayList<DayOfWeek> wochentagsnamen = instance.getDayOfWeekSortedList();
+        Weekmodel weekmodel = instance.instantiateWeekmodel(2022, LocalDate.now());
+        Monthmodel monthmodel = instance.instantiateMonthmodel(YearMonth.of(2022, Month.FEBRUARY));
 
-        instance.switchToNewLocal(Locale.US);
-        ArrayList<DayOfWeek> dayNamesOfWeek1 = instance.getDayOfWeekSortedList();
-        Weekmodel weekmodel1 = instance.instantiateWeekmodel(2004, 1);
-
+        Log.i("WERNER", "Test");
 
         // Inflating XML
         binding = ActivityMainBinding.inflate(getLayoutInflater());

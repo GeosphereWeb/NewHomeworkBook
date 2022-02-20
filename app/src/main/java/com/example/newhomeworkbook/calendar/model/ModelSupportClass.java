@@ -6,6 +6,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public abstract class ModelSupportClass {
      * <p>http://javatricks.de/tricks/kalenderwoche-von-datum-ermitteln-kalenderwoche-in-datum-umwandeln
      *
      * <blockquote>
-     *     <pre>
+     * <pre>
      *     LocalDate localDate = LocalDate.of(2016, Month.JANUARY, 3);
      *     int weekNumber = localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
      *     System.out.println(weekNumber);
@@ -24,27 +26,33 @@ public abstract class ModelSupportClass {
      * //Ausgabe: 53
      * </blockquote>
      *
-     * Die Zeile localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) gibt die Kalenderwoche für das Datum zurück.
+     * <p>Die Zeile localDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) gibt die Kalenderwoche für das Datum zurück.
      *
-     * Doch Achtung: Das gilt nur für das bei uns im Deutschsprachigen Raum gültige Kalendersystem laut ISO-8601. Möchte man ein anderes System verwenden muss das Locale explizit angegeben werden:
+     * <p>Doch Achtung: Das gilt nur für das bei uns im Deutschsprachigen Raum gültige Kalendersystem laut ISO-8601.
+     * Möchte man ein anderes System verwenden muss das Locale explizit angegeben werden:
      *
-     * LocalDate date= LocalDate.of(2016, Month.JANUARY, 3);
-     * TemporalField woy = WeekFields.of(Locale.CANADA).weekOfWeekBasedYear();
-     * System.out.println(date.get(woy));
+     * <p>LocalDate date= LocalDate.of(2016, Month.JANUARY, 3);<br>
+     * TemporalField woy = WeekFields.of(Locale.CANADA).weekOfWeekBasedYear();<br>
+     * System.out.println(date.get(woy));<br>
      * // Ausgabe: 2
      *
-     * Das Datum für eine bestimmte Kalenderwoche wird berechnet, indem ein beliebiges Datum im Jahr erstellt wird und dann die Kalenderwoche gesetzt wird. um den ersten Tag der Woche zu ermitteln, wird DayOfWeek.MONDAY gesetzt.
+     * <p>Das Datum für eine bestimmte Kalenderwoche wird berechnet, indem ein beliebiges Datum im
+     * Jahr erstellt wird und dann die Kalenderwoche gesetzt wird. um den ersten Tag der
+     * Woche zu ermitteln, wird DayOfWeek.MONDAY gesetzt.
      *
+     * <blockquote>
+     * <pre>
      * int year = 2015;
      * int weekNumber = 53;
      * LocalDate date = LocalDate.of(year, Month.JANUARY, 10);
      * LocalDate dayInWeek = date.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, weekNumber);
      * LocalDate start = dayInWeek.with(DayOfWeek.MONDAY);
      * System.out.println(start);
+     * </pre>
      * // Ausgabe: 2015-12-28
-     *
-     * <P>
-     * <P>
+     * </blockquote>
+     * <p>
+     * <p>
      * <blockquote>
      * <pre>
      * [Java 8]
@@ -67,7 +75,6 @@ public abstract class ModelSupportClass {
     private static TemporalField weekOfYear = weekFields.weekOfWeekBasedYear();
 
     private static ArrayList<DayOfWeek> daysOfWeek = new ArrayList<>(7);
-
 
     private static DayOfWeek firstDayOfWeek = WeekFields.of(LOCALE).getFirstDayOfWeek();
     private static TemporalField woy = WeekFields.of(LOCALE).weekOfWeekBasedYear();
@@ -96,7 +103,6 @@ public abstract class ModelSupportClass {
             DayOfWeek dayOfWeek = firstDayOfWeek.plus(i);
             dayOfWeekArrayList.add(i, dayOfWeek);
         }
-
         dayOfWeekArrayList.trimToSize();
 
         return dayOfWeekArrayList;
@@ -106,11 +112,11 @@ public abstract class ModelSupportClass {
 
     /**
      * @param year
-     * @param kw
+     * @param dayInWeek
      * @return
      */
-    public Weekmodel instantiateWeekmodel(int year, int kw) {
-        PrivateWeekmodel privateWeekmodel = new PrivateWeekmodel(year, kw, null);
+    public Weekmodel instantiateWeekmodel(int year, LocalDate dayInWeek) {
+        PrivateWeekmodel privateWeekmodel = new PrivateWeekmodel(year, dayInWeek);
         return privateWeekmodel;
     }
 
@@ -123,11 +129,9 @@ public abstract class ModelSupportClass {
         woy = WeekFields.of(locale).weekOfWeekBasedYear();
     }
 
-//    public Monthmodel instantiateMonthmodel(YearMonth yearMonth) {
-//        LocalDate firstDayInMonth = LocalDate.of(yearMonth.getYear(), yearMonth.getMonth(), 1);
-//        int lengthofMonth = yearMonth.lengthOfMonth();
-//        return new InitMonthmodel();
-//    }
+    public Monthmodel instantiateMonthmodel(YearMonth yearMonth) {
+        return new PrivateMonthmodel(yearMonth);
+    }
 
     //-------------------------- INNER KLASS ----------------------------------
 
@@ -135,61 +139,81 @@ public abstract class ModelSupportClass {
      *
      */
     private class PrivateWeekmodel extends Weekmodel {
-        private final ArrayList<CalendarDay> calendarDays = new ArrayList<>();
+        private final ArrayList<CalendarDay> calendarDays = new ArrayList<>(7);
 
-        public PrivateWeekmodel(int year, int weeknumber, @Nullable Month month) {
-            super(year, weeknumber);
+        protected PrivateWeekmodel(int year, LocalDate dayInWeek) {
+            super(year, dayInWeek);
 
-            LocalDate firstDayInWeek = LocalDate.now().withYear(year)
-                    .with(weekFields.weekOfYear(), weeknumber)
-                    .with(weekFields.dayOfWeek(), 1);
-
-
-            LocalDate firstDay = null;
-            if (month != null) {
-                firstDay = YearMonth.of(year, month).atDay(1);
-            }
-
+            LocalDate ersterTagDerWoche = dayInWeek.with(WeekFields.of(Locale.getDefault()).getFirstDayOfWeek());
             for (int i = 0; i < 7; i++) {
-                LocalDate localDateInWeek = firstDayInWeek.plusDays(i);
-                CalendarDay calendarDay = new CalendarDay(localDateInWeek);
-
-                if (month != null) {
-                    if (localDateInWeek.isBefore(firstDay)) {
-                        calendarDay.setDayInMonthStatus(MonthStatus.BEFORE_ACTUAL_MONTH);
-                    } else if (localDateInWeek.isEqual(firstDay)) {
-                        calendarDay.setDayInMonthStatus(MonthStatus.IN_ACTUAL_MONTH);
-                    } else if (localDateInWeek.isAfter(firstDay)) {
-                        calendarDay.setDayInMonthStatus(MonthStatus.AFTER_ACTUAL_MONTH);
-                    }
-                }
-
-                calendarDays.add(calendarDay);
+                calendarDays.add(new CalendarDay(ersterTagDerWoche.plusDays(i)));
             }
         }
 
         @Override
         public ArrayList<CalendarDay> getCalendarDays() {
-            return calendarDays;
+            return null;
         }
+
+
+//        public PrivateWeekmodel(int year, int weekNumber, @Nullable Month month) {
+//            super(year, weekNumber);
+//
+////            LocalDate firstDayInWeek = LocalDate.now().withYear(year)
+////                    .with(weekFields.weekOfYear(), weeknumber)
+////                    .with(weekFields.dayOfWeek(), 1);
+//            LocalDate firstDayInMonth = LocalDate.of(year, Month.JANUARY, 1);
+//            TemporalField temporalField = WeekFields.of(Locale.GERMANY).weekOfWeekBasedYear();
+//            LocalDate firstDayInWeek = firstDayInMonth.with(temporalField, 1);
+//            Log.i("WERNER", "PrivateWeekmodel: " + firstDayInWeek);
+//
+//            LocalDate firstDay = null;
+//            if (month != null) {
+//                firstDay = YearMonth.of(year, month).atDay(1);
+//            }
+//
+//            for (int i = 0; i < 7; i++) {
+//                LocalDate localDateInWeek = firstDayInWeek.plusDays(i);
+//                CalendarDay calendarDay = new CalendarDay(localDateInWeek);
+//
+//                if (month != null) {
+//                    if (localDateInWeek.isBefore(firstDay)) {
+//                        calendarDay.setDayInMonthStatus(MonthStatus.BEFORE_ACTUAL_MONTH);
+//                    } else if (localDateInWeek.isEqual(firstDay)) {
+//                        calendarDay.setDayInMonthStatus(MonthStatus.IN_ACTUAL_MONTH);
+//                    } else if (localDateInWeek.isAfter(firstDay)) {
+//                        calendarDay.setDayInMonthStatus(MonthStatus.AFTER_ACTUAL_MONTH);
+//                    }
+//                }
+//
+//                calendarDays.add(calendarDay);
+//            }
+
     }
 
     /**
      *
      */
     private class PrivateMonthmodel extends Monthmodel {
+        private ArrayList<Weekmodel> weekmodels = new ArrayList<>();
         public PrivateMonthmodel(YearMonth yearMonth) {
             super(yearMonth);
-            init();
+
+            int year = yearMonth.getYear();
+
+            LocalDate firstDayInMonth = yearMonth.atDay(1);
+            LocalDate lastDayInMonth = yearMonth.atEndOfMonth();
+
+            LocalDate tmp = firstDayInMonth;
+            while (tmp.isBefore(lastDayInMonth)) {
+                weekmodels.add(new PrivateWeekmodel(year, tmp));
+            }
         }
 
-        private void init() {
-
-        }
 
         @Override
         public ArrayList<Weekmodel> getWeekmodels() {
-            return null;
+            return weekmodels;
         }
 
 
