@@ -22,7 +22,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     @NonNull
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ModelSupportClass instance = ModelSupportClass.INSTANCE;
-        ArrayList<DayOfWeek> wochentagsnamen = instance.getDayOfWeekSortedList();
+        ArrayList<DayOfWeek> wochentagsnamen = instance.getDayOfWeekAsSortedList();
         Weekmodel weekmodel = instance.instantiateWeekmodel(2022, LocalDate.now());
         Monthmodel monthmodel = instance.instantiateMonthmodel(YearMonth.of(2022, Month.FEBRUARY));
 

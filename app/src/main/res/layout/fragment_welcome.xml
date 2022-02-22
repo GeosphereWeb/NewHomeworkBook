@@ -19,13 +19,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.newhomeworkbook.calendar.views.CalendarSingleRowWeekView
-        android:id="@+id/calenderWeekItem"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:id="@+id/singleWeek"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_id">
-
-    </com.example.newhomeworkbook.calendar.views.CalendarSingleRowWeekView>
+        app:layout_constraintTop_toBottomOf="@+id/welcome_id" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

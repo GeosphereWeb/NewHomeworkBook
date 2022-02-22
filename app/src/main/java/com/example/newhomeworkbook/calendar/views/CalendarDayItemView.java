@@ -27,6 +27,7 @@ public class CalendarDayItemView extends ConstraintLayout {
     private GradientDrawable gradientDrawable;
 
     private boolean actualDay;
+    private boolean clickbar = true;
 
     public CalendarDayItemView(Context context) {
         super(context);
@@ -66,14 +67,16 @@ public class CalendarDayItemView extends ConstraintLayout {
         this.setLabelVisibility(false);
         this.showRing(false);
 
+        this.setClickbar(true);
+
         // Listener
         rootView.setOnFocusChangeListener((view, visibility) -> setAsSelected(visibility));
-        rootView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("WERNER", "onClick: in CalenderDayItemView gecklicked");
-            }
-        });
+//        rootView.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.i("WERNER", "onClick: in CalenderDayItemView gecklicked");
+//            }
+//        });
         rootView.clearFocus();
     }
 
@@ -105,7 +108,7 @@ public class CalendarDayItemView extends ConstraintLayout {
     // // RING
     private void showRing(boolean visibility) {
         //Stroke
-        if (visibility && !actualDay) {
+        if (visibility && !actualDay && clickbar) {
             gradientDrawable.setStroke(6, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
         } else {
             gradientDrawable.setStroke(0, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
@@ -197,5 +200,13 @@ public class CalendarDayItemView extends ConstraintLayout {
         } else {
             dayTextView.setAlpha(0.2f);
         }
+    }
+
+    public boolean isClickbar() {
+        return clickbar;
+    }
+
+    public void setClickbar(boolean clickbar) {
+        this.clickbar = clickbar;
     }
 }
