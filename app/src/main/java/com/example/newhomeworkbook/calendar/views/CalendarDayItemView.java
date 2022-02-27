@@ -196,9 +196,9 @@ public class CalendarDayItemView extends ConstraintLayout {
 
     public void setOutAutActualMonth(boolean outAutActualMonth) {
         if (outAutActualMonth){
-            dayTextView.setAlpha(1.0f);
-        } else {
             dayTextView.setAlpha(0.2f);
+        } else {
+            dayTextView.setAlpha(1.0f);
         }
     }
 

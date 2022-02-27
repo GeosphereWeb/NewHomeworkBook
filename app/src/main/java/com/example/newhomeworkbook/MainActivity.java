@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ModelSupportClass instance = ModelSupportClass.INSTANCE;
-        ArrayList<DayOfWeek> wochentagsnamen = instance.getDayOfWeekAsSortedList();
+        ArrayList<DayOfWeek> wochentagsnamen = Weekmodel.getDayOfWeekAsSortedList();
         Weekmodel weekmodel = instance.instantiateWeekmodel(2022, LocalDate.now());
         Monthmodel monthmodel = instance.instantiateMonthmodel(YearMonth.of(2022, Month.FEBRUARY));
 

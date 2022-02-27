@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,7 +50,7 @@ public class CalendarMultiRowWeekView extends RecyclerView {
         if (weekmodels == null) {
             ////
             // START Testbereich
-            setModel(ModelSupportClass.INSTANCE.instantiateMonthmodel(YearMonth.of(2022, Month.MARCH)));
+            setModel(ModelSupportClass.INSTANCE.instantiateMonthmodel(YearMonth.of(2022, Month.FEBRUARY)));
             this.refreshDrawableState();
             // ENDE Testbereich
         }
@@ -71,43 +72,34 @@ public class CalendarMultiRowWeekView extends RecyclerView {
     /**
      *
      */
-    private class MultiWeeksAdapter extends Adapter<MyViewHolder> {
+    private class MultiWeeksAdapter extends Adapter<MyAbstractViewHolder> {
 
         @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            CalendarSingleRowWeekView calendarSingleRowWeekView = new CalendarSingleRowWeekView(parent.getContext());
-            return new MyViewHolder(calendarSingleRowWeekView);
-
-//            calendarSingleRowWeekView.setFocusable(true);
-//            calendarSingleRowWeekView.setClickable(true);
-//            calendarSingleRowWeekView.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.i("WERNER", "onClick: remove Kalenderwoche");
-//                    calendarWeekManager.getCalenderWeeks().remove(2);
-//                }
-//            });
-//            View headerView = LayoutInflater.from(parent.getContext()).inflate(R.layout.calendar_week_header, parent, false);
-//
-////            return new MyViewHolder(calendarSingleRowWeekView);
-//            MyViewHolder myViewHolder;
-//            if (viewType == CALENDAR_HEADER) {
-//                myViewHolder = new MyViewHolder(headerView);
-//            } else {
-//                myViewHolder = new MyViewHolder(calendarSingleRowWeekView);
-//            }
-//            return myViewHolder;
+        public MyAbstractViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            if (viewType == CALENDAR_HEADER) {
+                TextView textView = new TextView(parent.getContext());
+                textView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                MyWochenTageViewHolder textViewHolder = new MyWochenTageViewHolder(textView);
+                return textViewHolder;
+            } else {
+                CalendarSingleRowWeekView calendarSingleRowWeekView = new CalendarSingleRowWeekView(parent.getContext());
+                MyCalenderSingleRowViewHolder myCalenderSingleRowViewHolder = new MyCalenderSingleRowViewHolder(calendarSingleRowWeekView);
+                return myCalenderSingleRowViewHolder;
+            }
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            Weekmodel weekmodel = weekmodels.get(position);
-            holder.calendarSingleRowWeekView.setCalenderWeekmodel(weekmodel);
-//            if (holder.calendarSingleRowWeekView != null) {
-////                CalendarWeek calendarWeek = calendarWeekManager.get(position - 1);
-////                holder.calendarSingleRowWeekView.setCalenderWeek(calendarWeek);
-//            }
+        public void onBindViewHolder(@NonNull MyAbstractViewHolder holder, int position) {
+            if (holder instanceof MyWochenTageViewHolder) {
+                MyWochenTageViewHolder my = (MyWochenTageViewHolder) holder;
+            }
+
+            if (holder instanceof MyCalenderSingleRowViewHolder) {
+                MyCalenderSingleRowViewHolder my = (MyCalenderSingleRowViewHolder) holder;
+                Weekmodel weekmodel = weekmodels.get(position);
+                my.calendarSingleRowWeekView.setCalenderWeekmodel(weekmodel);
+            }
         }
 
         @Override
@@ -119,8 +111,7 @@ public class CalendarMultiRowWeekView extends RecyclerView {
 
         @Override
         public int getItemViewType(int position) {
-            return 1;
-////            return super.getItemViewType(position);
+            return CALENDAR_DAYS;
 //            if (position == 0) {
 //                return CALENDAR_HEADER;
 //            } else {
@@ -139,19 +130,39 @@ public class CalendarMultiRowWeekView extends RecyclerView {
 
     }
 
+    //-------------------------------------------------------------------------
+    private abstract class MyAbstractViewHolder extends ViewHolder {
+        public MyAbstractViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
     /**
      *
      */
-    private static class MyViewHolder extends ViewHolder {
+    private class MyCalenderSingleRowViewHolder extends MyAbstractViewHolder {
         CalendarSingleRowWeekView calendarSingleRowWeekView;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyCalenderSingleRowViewHolder(@NonNull View itemView) {
             super(itemView);
             if (itemView instanceof CalendarSingleRowWeekView) {
                 calendarSingleRowWeekView = (CalendarSingleRowWeekView) itemView;
             }
         }
+    }
 
+    /**
+     *
+     */
+    private class MyWochenTageViewHolder extends MyAbstractViewHolder {
+        TextView textView;
+
+        public MyWochenTageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            if (itemView instanceof TextView) {
+                textView = (TextView) itemView;
+            }
+        }
     }
 
 }

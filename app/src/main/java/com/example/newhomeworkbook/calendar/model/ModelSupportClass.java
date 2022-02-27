@@ -64,7 +64,6 @@ public abstract class ModelSupportClass {
      * </blockquote>
      */
     // private static final ArrayList<Integer> weekendPosition = new ArrayList<>();
-    private DayOfWeek firstDayOfWeek = WeekFields.ISO.getFirstDayOfWeek();
     private ArrayList<DayOfWeek> daysOfWeek = new ArrayList<>(7);
     //    private Locale LOCALE = Locale.getDefault();
     //    private  TemporalField weekOfYear = weekFields.weekOfWeekBasedYear();
@@ -74,28 +73,15 @@ public abstract class ModelSupportClass {
     public static ModelSupportClass INSTANCE = new ModelSupportClass() {
     };
 
-    /*
-    Constructor
-     */
-    private ModelSupportClass() {
-        daysOfWeek = getDayOfWeekAsSortedList();
+    static {
+
     }
+//    /*
+//    Constructor
+//     */
+//    private ModelSupportClass() {
+//    }
 
-    /**
-     * @return Liste mit Wochentagen {@link DayOfWeek}-Array
-     */
-    public ArrayList<DayOfWeek> getDayOfWeekAsSortedList() {
-        ArrayList<DayOfWeek> dayOfWeekArrayList = new ArrayList<>(7);
-
-        // Erzeuge die Reihenfolge der Wochentage
-        for (int i = 0; i < 7; i++) {
-            DayOfWeek dayOfWeek = firstDayOfWeek.plus(i);
-            dayOfWeekArrayList.add(i, dayOfWeek);
-        }
-        dayOfWeekArrayList.trimToSize();
-
-        return dayOfWeekArrayList;
-    }
 
     //-------------------------------------------------------------------------
 
@@ -108,15 +94,6 @@ public abstract class ModelSupportClass {
         PrivateWeekmodel privateWeekmodel = new PrivateWeekmodel(year, dayInWeek);
         return privateWeekmodel;
     }
-
-//    /**
-//     * @param locale
-//     */
-//    public void switchToNewLocal(Locale locale) {
-//        LOCALE = locale;
-//        firstDayOfWeek = WeekFields.of(locale).getFirstDayOfWeek();
-//        woy = WeekFields.of(locale).weekOfWeekBasedYear();
-//    }
 
     public Monthmodel instantiateMonthmodel(YearMonth yearMonth) {
         return new PrivateMonthmodel(yearMonth);
