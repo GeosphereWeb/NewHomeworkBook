@@ -5,9 +5,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +20,9 @@ import com.example.newhomeworkbook.databinding.CalenderDayViewBinding;
 public class CalendarDayItemView extends ConstraintLayout {
     private static final int LABEL_TURNED_IN = R.drawable.ic_baseline_turned_in_24;
     private static final int LABEL_TURNED_IN_NOT = R.drawable.ic_baseline_turned_in_not_24;
+
+    int colorPrimary;
+    int colorOnPrimary;
 
     private TextView dayTextView;
     private ImageView label;
@@ -62,6 +64,16 @@ public class CalendarDayItemView extends ConstraintLayout {
         dayTextView = viewBinding.calenderDayTextView;
         label = viewBinding.label;
         gradientDrawable = (GradientDrawable) dayTextView.getBackground();
+
+        // Color
+        TypedValue typedValue_colorPrimary = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue_colorPrimary, true);
+        colorPrimary = typedValue_colorPrimary.data;
+
+        TypedValue typedValue_colorOnPrimary = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorOnPrimary, typedValue_colorOnPrimary, true);
+        colorOnPrimary = typedValue_colorOnPrimary.data;
+
 
         // Standartmäßig alles nicht darstellen
         this.setLabelVisibility(false);
@@ -109,9 +121,9 @@ public class CalendarDayItemView extends ConstraintLayout {
     private void showRing(boolean visibility) {
         //Stroke
         if (visibility && !actualDay && clickbar) {
-            gradientDrawable.setStroke(6, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
+            gradientDrawable.setStroke(4, colorPrimary);
         } else {
-            gradientDrawable.setStroke(0, ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
+            gradientDrawable.setStroke(0, colorPrimary);
         }
     }
 
@@ -119,41 +131,27 @@ public class CalendarDayItemView extends ConstraintLayout {
         gradientDrawable.mutate();
         if (highlight) {
             if (actualDay) {
-                gradientDrawable.setColor(ContextCompat.getColor(getContext(),
-                        R.color.calender_light_day_bubble_ActualDay));
+                gradientDrawable.setColor(colorPrimary);
             }
-
         } else {
-//            int c = getResources().getColor(android.R.color.primary_text_dark);
-//            dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-//                    android.R.color.primary_text_light));
-//            dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-//                    android.R.color.primary_text_light));
             gradientDrawable.setColor(Color.TRANSPARENT);
         }
     }
 
     // // TEXTVIEW
     private void setDayTextViewColor(boolean highlighted) {
-        dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-                android.R.color.primary_text_light));
+
         if (highlighted) {
             if (actualDay){
-                dayTextView.setTextColor(ContextCompat.getColor(getContext(),  R.color.md_theme_light_surface));
+                dayTextView.setTextColor(colorOnPrimary);
                 dayTextView.setTypeface(dayTextView.getTypeface(), Typeface.BOLD);
-            }else {
-                dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-                        android.R.color.primary_text_light));
-                dayTextView.setTypeface(dayTextView.getTypeface(), Typeface.NORMAL);
             }
         } else {
             if (actualDay){
-                dayTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.calender_light_day_bubble_ActualDay));
+                dayTextView.setTextColor(colorPrimary);
                 dayTextView.setTypeface(dayTextView.getTypeface(), Typeface.BOLD);
-            }else {
-                dayTextView.setTextColor(ContextCompat.getColor(getContext(),
-                        android.R.color.primary_text_light));
             }
+
         }
 
         // textView.setTextColor(getResources().getColor(R.color.errorColor, getResources().newTheme()));
@@ -196,7 +194,7 @@ public class CalendarDayItemView extends ConstraintLayout {
 
     public void setOutAutActualMonth(boolean outAutActualMonth) {
         if (outAutActualMonth){
-            dayTextView.setAlpha(0.2f);
+            dayTextView.setAlpha(0.35f);
         } else {
             dayTextView.setAlpha(1.0f);
         }

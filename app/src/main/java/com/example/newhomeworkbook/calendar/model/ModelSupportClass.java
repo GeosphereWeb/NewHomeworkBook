@@ -160,7 +160,6 @@ public abstract class ModelSupportClass {
                 weekmodels.add(new PrivateWeekmodel(year, tmp, yearMonth));
                 tmp = tmp.plusWeeks(1);
             }
-
         }
 
         @Override

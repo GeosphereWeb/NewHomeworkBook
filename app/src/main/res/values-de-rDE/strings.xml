@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewHomeworkBook</string>
+
+    <string name="MONDAY_long">Montag</string>
+    <string name="TUESDAY_long">Dienstag</string>
+    <string name="WEDNESDAY_long">Mittwoch</string>
+    <string name="THURSDAY_long">Donnerstag</string>
+    <string name="FRIDAY_long">Freitag</string>
+    <string name="SATURDAY_long">Samstag</string>
+    <string name="SUNDAY_long">Sonntag</string>
+
+    <string name="MONDAY_short">Mo</string>
+    <string name="TUESDAY_short">Di</string>
+    <string name="WEDNESDAY_short">Mi</string>
+    <string name="THURSDAY_short">Do</string>
+    <string name="FRIDAY_short">Fr</string>
+    <string name="SATURDAY_short">Sa</string>
+    <string name="SUNDAY_short">So</string>
+</resources>

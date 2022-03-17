@@ -1,0 +1,17 @@
+<resources>
+    <attr name="colorColor39" format="color" />
+    <attr name="colorOnColor39" format="color" />
+    <attr name="colorColor39Container" format="color" />
+    <attr name="colorOnColor39Container" format="color" />
+    <attr name="harmonizeColor39" format="boolean" />
+    <attr name="colorColor23" format="color" />
+    <attr name="colorOnColor23" format="color" />
+    <attr name="colorColor23Container" format="color" />
+    <attr name="colorOnColor23Container" format="color" />
+    <attr name="harmonizeColor23" format="boolean" />
+    <attr name="colorColor57" format="color" />
+    <attr name="colorOnColor57" format="color" />
+    <attr name="colorColor57Container" format="color" />
+    <attr name="colorOnColor57Container" format="color" />
+    <attr name="harmonizeColor57" format="boolean" />
+</resources>

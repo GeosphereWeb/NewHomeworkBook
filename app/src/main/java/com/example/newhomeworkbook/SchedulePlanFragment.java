@@ -5,13 +5,15 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView;
 import com.example.newhomeworkbook.databinding.FragmentSchedulePlanBinding;
-import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,7 +73,6 @@ public class SchedulePlanFragment extends Fragment {
         binding = FragmentSchedulePlanBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-
         TextView test = binding.scheduleId;
         test.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +81,28 @@ public class SchedulePlanFragment extends Fragment {
             }
         });
 
+        CalenderMultiRowWeekView calenderMultiRowWeekView = binding.calenderMultiRowWeekView;
+
+
+
+        Button buttonKwShow = binding.buttonWochenendeShow;
+        Button buttonKwNoShow = binding.buttonWochenendeNoShow;
+
+        String TAG = "SchedulePlanFragment";
+        buttonKwShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: buttonKwShow");
+                calenderMultiRowWeekView.showTest();
+            }
+        });
+
+        buttonKwNoShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: buttonKwHide");
+            }
+        });
         return view;
     }
 }

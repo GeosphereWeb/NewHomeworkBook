@@ -12,23 +12,10 @@
         android:id="@+id/schoolSubject_id"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:background="@color/Custom0"
+        android:background="#D5B493"
         android:text="School Subject"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.example.newhomeworkbook.calendar.views.CalendarMultiRowWeekView
-        android:id="@+id/calenderMultiview_id"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/schoolSubject_id"
-        tools:itemCount="5"
-        tools:listitem="@layout/calender_week_with_kw_view"
-        tools:orientation="vertical"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
+    android:outlineProvider="bounds"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchedulePlanFragment">
+    tools:context=".SchedulePlanFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/schedule_id"
         android:layout_width="0dp"
@@ -18,13 +22,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView2
-        android:id="@+id/calenderMultiRowWeekView2"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/schedule_id" />
+        app:layout_constraintTop_toBottomOf="@+id/schedule_id"
+        android:animateLayoutChanges="true"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_Month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="MONAT" />
+
+            <TextView
+                android:id="@+id/textView_Year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="JAHR" />
+        </LinearLayout>
+
+        <com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView
+            android:id="@+id/calenderMultiRowWeekView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp">
+
+        </com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView>
+
+        <Button
+            android:id="@+id/buttonWochenendeNoShow"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Wochenende NoShow" />
+
+        <Button
+            android:id="@+id/buttonWochenendeShow"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="20dp"
+            android:text="Wochenende Show2" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

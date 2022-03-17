@@ -12,9 +12,6 @@
         tools:layout="@layout/fragment_welcome"
         >
         <action
-            android:id="@+id/action_mainFragment_to_schoolsubjectFragment"
-            app:destination="@id/schoolsubjectFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_schedulePlanFragment"
             app:destination="@id/schedulePlanFragment" />
     </fragment>
@@ -22,7 +19,11 @@
         android:id="@+id/schoolsubjectFragment"
         android:name="com.example.newhomeworkbook.SchoolsubjectFragment"
         android:label="schoolsubject"
-        tools:layout="@layout/fragment_schoolsubject" />
+        tools:layout="@layout/fragment_schoolsubject" >
+        <action
+            android:id="@+id/action_schoolsubjectFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/schedulePlanFragment"
         android:name="com.example.newhomeworkbook.SchedulePlanFragment"
