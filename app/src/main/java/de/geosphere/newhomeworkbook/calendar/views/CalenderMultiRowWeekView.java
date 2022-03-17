@@ -1,11 +1,7 @@
-package com.example.newhomeworkbook.calendar.views;
+package de.geosphere.newhomeworkbook.calendar.views;
 
-import android.animation.Animator;
-import android.animation.LayoutTransition;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.animation.Animation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

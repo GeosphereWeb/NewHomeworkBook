@@ -7,7 +7,7 @@
     android:outlineProvider="bounds"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchedulePlanFragment"
+    tools:context="de.geosphere.newhomeworkbook.SchedulePlanFragment"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -55,7 +55,7 @@
                 android:text="JAHR" />
         </LinearLayout>
 
-        <com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView
+        <de.geosphere.newhomeworkbook.calendar.views.CalenderMultiRowWeekView
             android:id="@+id/calenderMultiRowWeekView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp">
 
-        </com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView>
+        </de.geosphere.newhomeworkbook.calendar.views.CalenderMultiRowWeekView>
 
         <Button
             android:id="@+id/buttonWochenendeNoShow"

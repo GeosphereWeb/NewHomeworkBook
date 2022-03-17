@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calendar.views;
+package de.geosphere.newhomeworkbook.calendar.views;
 
 import android.graphics.Typeface;
 import android.util.TypedValue;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newhomeworkbook.R;
+import de.geosphere.newhomeworkbook.R;
 
 public abstract class AbstractCalendarViewHolder extends RecyclerView.ViewHolder {
 

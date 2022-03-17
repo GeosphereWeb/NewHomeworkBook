@@ -1,10 +1,6 @@
-package com.example.newhomeworkbook;
+package de.geosphere.newhomeworkbook;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.newhomeworkbook.calendar.views.CalenderMultiRowWeekView;
-import com.example.newhomeworkbook.databinding.FragmentSchedulePlanBinding;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import de.geosphere.newhomeworkbook.calendar.views.CalenderMultiRowWeekView;
+import de.geosphere.newhomeworkbook.databinding.FragmentSchedulePlanBinding;
+
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook;
+package de.geosphere.newhomeworkbook;
 
 import android.content.Context;
 

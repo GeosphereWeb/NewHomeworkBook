@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook;
+package de.geosphere.newhomeworkbook;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +12,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.newhomeworkbook.calendar.model.ModelSupportClass;
-import com.example.newhomeworkbook.calendar.model.Monthmodel;
-import com.example.newhomeworkbook.calendar.model.Weekmodel;
-import com.example.newhomeworkbook.databinding.ActivityMainBinding;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.ArrayList;
+
+import de.geosphere.newhomeworkbook.calendar.model.ModelSupportClass;
+import de.geosphere.newhomeworkbook.calendar.model.Monthmodel;
+import de.geosphere.newhomeworkbook.calendar.model.Weekmodel;
+import de.geosphere.newhomeworkbook.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     @NonNull

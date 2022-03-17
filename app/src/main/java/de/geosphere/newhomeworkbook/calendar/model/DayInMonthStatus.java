@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calendar.model;
+package de.geosphere.newhomeworkbook.calendar.model;
 
 public interface DayInMonthStatus {
 

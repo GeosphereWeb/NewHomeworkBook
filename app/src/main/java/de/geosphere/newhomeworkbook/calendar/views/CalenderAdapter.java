@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calendar.views;
+package de.geosphere.newhomeworkbook.calendar.views;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newhomeworkbook.calendar.model.Day;
-import com.example.newhomeworkbook.calendar.model.ModelSupportClass;
-import com.example.newhomeworkbook.calendar.model.Monthmodel;
-import com.example.newhomeworkbook.calendar.model.Weekmodel;
+import de.geosphere.newhomeworkbook.calendar.model.Day;
+import de.geosphere.newhomeworkbook.calendar.model.ModelSupportClass;
+import de.geosphere.newhomeworkbook.calendar.model.Monthmodel;
+import de.geosphere.newhomeworkbook.calendar.model.Weekmodel;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calendar.model;
+package de.geosphere.newhomeworkbook.calendar.model;
 
 import java.time.YearMonth;
 import java.util.ArrayList;

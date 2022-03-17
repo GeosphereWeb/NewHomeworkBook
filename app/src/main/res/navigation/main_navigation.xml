@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.newhomeworkbook.WelcomeFragment"
+        android:name="de.geosphere.newhomeworkbook.WelcomeFragment"
         android:label="main"
         tools:layout="@layout/fragment_welcome"
         >
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/schoolsubjectFragment"
-        android:name="com.example.newhomeworkbook.SchoolsubjectFragment"
+        android:name="de.geosphere.newhomeworkbook.SchoolsubjectFragment"
         android:label="schoolsubject"
         tools:layout="@layout/fragment_schoolsubject" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/schedulePlanFragment"
-        android:name="com.example.newhomeworkbook.SchedulePlanFragment"
+        android:name="de.geosphere.newhomeworkbook.SchedulePlanFragment"
         android:label="schedule_plan"
         tools:layout="@layout/fragment_schedule_plan" >
         <action

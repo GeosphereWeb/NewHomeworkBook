@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook.calendar.views;
+package de.geosphere.newhomeworkbook.calendar.views;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
-import com.example.newhomeworkbook.R;
-import com.example.newhomeworkbook.databinding.CalenderDayViewBinding;
+import de.geosphere.newhomeworkbook.R;
+import de.geosphere.newhomeworkbook.databinding.CalenderDayViewBinding;
 
 public class CalendarDayItemView extends ConstraintLayout {
     private static final int LABEL_TURNED_IN = R.drawable.ic_baseline_turned_in_24;

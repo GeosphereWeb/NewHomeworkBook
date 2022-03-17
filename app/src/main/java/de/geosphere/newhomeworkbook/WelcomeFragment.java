@@ -1,4 +1,4 @@
-package com.example.newhomeworkbook;
+package de.geosphere.newhomeworkbook;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.newhomeworkbook.databinding.FragmentWelcomeBinding;
+import de.geosphere.newhomeworkbook.databinding.FragmentWelcomeBinding;
 
 
 /**

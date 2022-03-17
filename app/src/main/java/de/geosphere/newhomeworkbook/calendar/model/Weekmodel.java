@@ -1,15 +1,14 @@
-package com.example.newhomeworkbook.calendar.model;
+package de.geosphere.newhomeworkbook.calendar.model;
 
 import android.content.Context;
 
-import com.example.newhomeworkbook.R;
+import de.geosphere.newhomeworkbook.R;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public abstract class Weekmodel {
     private final int year;
