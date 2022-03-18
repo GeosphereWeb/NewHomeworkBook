@@ -134,7 +134,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<AbstractCalendarViewHo
             else if (holder instanceof AbstractCalendarViewHolder.CalendarKwViewHolder) {
                 AbstractCalendarViewHolder.CalendarKwViewHolder calendarKwViewHolder = (AbstractCalendarViewHolder.CalendarKwViewHolder) holder;
                 String o = (String) filteredDataModel.get(position);
-                calendarKwViewHolder.getTextView().setText(o);
+                calendarKwViewHolder.getTextView().setText("KW " + o);
             }
         }
     }

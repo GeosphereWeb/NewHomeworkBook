@@ -11,6 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -22,6 +23,9 @@ import de.geosphere.newhomeworkbook.calendar.model.ModelSupportClass;
 import de.geosphere.newhomeworkbook.calendar.model.Monthmodel;
 import de.geosphere.newhomeworkbook.calendar.model.Weekmodel;
 import de.geosphere.newhomeworkbook.databinding.ActivityMainBinding;
+import de.geosphere.newhomeworkbook.datamanagement.AppDatabase;
+import de.geosphere.newhomeworkbook.datamanagement.Teacher;
+import de.geosphere.newhomeworkbook.datamanagement.TeacherDao;
 
 public class MainActivity extends AppCompatActivity {
     @NonNull
@@ -54,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
 
 
+        // TEST
+
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+        Teacher teacher = new Teacher();
+        teacher.firstName = "Werner";
+        teacher.lastName = "Schröter";
+
+        TeacherDao teacherDAO = db.teacherDao();
+        teacherDAO.insertTeacher(teacher);
+
+        Log.i("WER", "onCreate: ");
 
 //        binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 //            @Override
@@ -75,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
-
 
 
     }
