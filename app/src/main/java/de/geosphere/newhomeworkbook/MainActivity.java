@@ -60,15 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         // TEST
 
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-        Teacher teacher = new Teacher();
-        teacher.firstName = "Werner";
-        teacher.lastName = "Schröter";
-
-        TeacherDao teacherDAO = db.teacherDao();
-        teacherDAO.insertTeacher(teacher);
-
-        Log.i("WER", "onCreate: ");
+//        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+//        Teacher teacher = new Teacher();
+//        teacher.firstName = "Werner";
+//        teacher.lastName = "Schröter";
+//
+//        TeacherDao teacherDAO = db.teacherDao();
+//        teacherDAO.insertTeacher(teacher);
+//
+//        Log.i("WER", "onCreate: ");
 
 //        binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 //            @Override

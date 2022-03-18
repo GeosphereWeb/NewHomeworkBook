@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import de.geosphere.newhomeworkbook.databinding.FragmentWelcomeBinding;
+import de.geosphere.newhomeworkbook.datamanagement.test.TeacherListAdapter;
 
 
 /**
@@ -58,6 +61,7 @@ public class WelcomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -71,12 +75,24 @@ public class WelcomeFragment extends Fragment {
         TextView test = binding.welcomeId;
         test.setText("werner sagt Welcome");
 
+
+        // DB TEST
+        RecyclerView recyclerview = binding.recyclerview;
+        final TeacherListAdapter adapter = new TeacherListAdapter(new TeacherListAdapter.TeacherDiff());
+        recyclerview.setAdapter(adapter);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        // ENDE DB TEST
+
+
+
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_schedulePlanFragment);
             }
         });
+
+
 
         return view;
     }

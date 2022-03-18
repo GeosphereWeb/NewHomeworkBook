@@ -1,5 +1,6 @@
 package de.geosphere.newhomeworkbook.datamanagement;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -14,10 +15,10 @@ import io.reactivex.rxjava3.core.Completable;
 public interface TeacherDao {
 
     @Query("SELECT * FROM teacher")
-    List<Teacher> getAll();
+    LiveData<List<Teacher>> getAllTeachers();
 
     @Query("SELECT * FROM teacher WHERE uid IN (:teacherIds)")
-    List<Teacher> loadAllByIds(int[] teacherIds);
+    LiveData<List<Teacher>> loadAllByIds(int[] teacherIds);
 
     @Query("SELECT * FROM teacher WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
     Teacher findByNam(String first, String last);
@@ -26,7 +27,7 @@ public interface TeacherDao {
 //    void insertAll(Teacher... teachers);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public Completable insertTeacher(Teacher teacher);
+    void insertTeacher(Teacher teacher);
 
     @Delete
     void delete(Teacher teacher);
