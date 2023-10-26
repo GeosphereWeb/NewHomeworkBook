@@ -1,0 +1,38 @@
+name: Jekyll Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # Ändern Sie dies entsprechend Ihrem Standardbranch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7 # Ändern Sie dies auf Ihre Ruby-Version
+
+    - name: Install Jekyll
+      run: gem install jekyll
+
+    - name: Build Jekyll
+      run: jekyll build
+
+    - name: Deploy to GitHub Pages
+      if: success()
+      run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git clone --branch=gh-pages --depth=1 https://github.com/${{ github.repository }} /tmp/gh-pages
+        cd /tmp/gh-pages
+        cp -r $GITHUB_WORKSPACE/_site/* .
+        git add .
+        git commit -m "Auto-generated Jekyll site"
+        git push -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+
