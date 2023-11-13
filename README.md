@@ -4,7 +4,7 @@
 [![Deploy Jekyll with GitHub Pages dependencies preinstalled](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/jekyll-gh-pages.yml)
 [![ktlint](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml)
 [![pages-build-deployment](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment)
-[![Minimum node.js version](https://badgen.net/npm/node/express)](https://npmjs.com/package/express)
+[![Npm package license](https://badgen.net/npm/llicense/discord.js)](https://npmjs.com/package/discord.js)
 
 Provide an introductory paragraph, describing:
 
