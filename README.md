@@ -5,6 +5,8 @@
 [![ktlint](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml)
 [![pages-build-deployment](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/GeosphereWeb/NewHomeworkBook)
+
 
 Provide an introductory paragraph, describing:
 
