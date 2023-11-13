@@ -4,7 +4,7 @@
 [![Deploy Jekyll with GitHub Pages dependencies preinstalled](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/jekyll-gh-pages.yml)
 [![ktlint](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/ktlint.yml)
 [![pages-build-deployment](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/GeosphereWeb/NewHomeworkBook/actions/workflows/pages/pages-build-deployment)
-[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+![GitHub License](https://img.shields.io/github/license/GeosphereWeb/NewHomeworkBook)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/GeosphereWeb/NewHomeworkBook)
 
 
