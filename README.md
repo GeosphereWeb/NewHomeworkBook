@@ -8,7 +8,16 @@
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/GeosphereWeb/NewHomeworkBook)
 
 
-Provide an introductory paragraph, describing:
+Our goal is to create an Android app that supports daily school life. 
+Among other things, class work and homework, as well as appointments and contacts are to be 
+managed here.
+
+<img src="sources/NewMyScoolBuddy_subject.png" width="190"/>
+
+We want to develop a small Android app that, like many other apps, serves as a little helper for 
+everyday school life.
+Our motivation here is to learn Android and Kotlin better. In addition, we want to carry out 
+the development via the Github platform as a "playground" for the software development process.
 
 * What your project does 
 * Why people should consider using your project
